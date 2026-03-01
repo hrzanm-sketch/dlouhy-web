@@ -12,5 +12,6 @@ export {
   productRelations,
   productRelationsRelations,
 } from "./product-relations"
+export { downloads } from "./downloads"
 export { webLeads, webLeadsRelations } from "./web-leads"
 export { webPageContent } from "./web-page-content"

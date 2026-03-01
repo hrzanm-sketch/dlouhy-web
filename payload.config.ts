@@ -3,6 +3,9 @@ import { postgresAdapter } from "@payloadcms/db-postgres"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import path from "path"
 import { fileURLToPath } from "url"
+import { Products } from "@/payload/collections/Products"
+import { Categories } from "@/payload/collections/Categories"
+import { Downloads } from "@/payload/collections/Downloads"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,6 +29,9 @@ export default buildConfig({
       },
       fields: [{ name: "alt", type: "text" }],
     },
+    Products,
+    Categories,
+    Downloads,
   ],
   typescript: {
     outputFile: path.resolve(dirname, "src/payload-types.ts"),

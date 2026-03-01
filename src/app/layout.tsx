@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import { JsonLd } from "@/components/shared/json-ld"
+import { organizationJsonLd } from "@/lib/seo"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -23,7 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <JsonLd data={organizationJsonLd()} />
+        {children}
+      </body>
     </html>
   )
 }
