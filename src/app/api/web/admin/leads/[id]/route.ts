@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server"
+import { eq } from "drizzle-orm"
 import { getPortalSession } from "@/lib/portal/get-session"
+import { db } from "@/lib/db"
+import { webLeads } from "@/lib/db/schema"
+
+const VALID_STATUSES = ["new", "contacted", "qualified", "resolved", "rejected"]
 
 export async function PATCH(
   req: Request,
@@ -15,12 +20,19 @@ export async function PATCH(
   const body = await req.json()
   const { status } = body
 
-  if (!status || !["new", "contacted", "qualified", "resolved", "rejected"].includes(status)) {
+  if (!status || !VALID_STATUSES.includes(status)) {
     return NextResponse.json({ error: "Invalid status" }, { status: 400 })
   }
 
-  // TODO: update lead in DB
-  console.log(`[Admin] Lead ${id} status updated to ${status} by ${session.userId}`)
+  const [updated] = await db
+    .update(webLeads)
+    .set({ status, updatedAt: new Date() })
+    .where(eq(webLeads.id, id))
+    .returning({ id: webLeads.id, status: webLeads.status })
 
-  return NextResponse.json({ success: true, id, status })
+  if (!updated) {
+    return NextResponse.json({ error: "Lead not found" }, { status: 404 })
+  }
+
+  return NextResponse.json({ success: true, id: updated.id, status: updated.status })
 }

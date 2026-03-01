@@ -8,6 +8,8 @@ import { Categories } from "@/payload/collections/Categories"
 import { Downloads } from "@/payload/collections/Downloads"
 import { References } from "@/payload/collections/References"
 import { Articles } from "@/payload/collections/Articles"
+import { Homepage } from "@/payload/globals/Homepage"
+import { SiteSettings } from "@/payload/globals/SiteSettings"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,6 +39,7 @@ export default buildConfig({
     References,
     Articles,
   ],
+  globals: [Homepage, SiteSettings],
   typescript: {
     outputFile: path.resolve(dirname, "src/payload-types.ts"),
   },

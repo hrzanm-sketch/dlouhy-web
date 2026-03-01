@@ -14,8 +14,9 @@ export default auth((req) => {
   }
 
   // Protected portal routes — require session
-  if (!req.auth) {
+  if (pathname.startsWith("/portal") && !req.auth) {
     const loginUrl = new URL("/portal/login", req.url)
+    loginUrl.searchParams.set("callbackUrl", pathname)
     return NextResponse.redirect(loginUrl)
   }
 
@@ -23,5 +24,13 @@ export default auth((req) => {
 })
 
 export const config = {
-  matcher: ["/portal/:path*"],
+  matcher: [
+    /*
+     * Match all request paths except:
+     * - _next/static, _next/image (Next.js internals)
+     * - favicon.ico, public files
+     * - API routes (handled by their own auth)
+     */
+    "/((?!_next/static|_next/image|favicon.ico|images|fonts|admin).*)",
+  ],
 }

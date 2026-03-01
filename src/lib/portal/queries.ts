@@ -144,3 +144,110 @@ export async function getDashboardData(
     unpaidInvoices: MOCK_INVOICES.filter((i) => i.status !== "paid"),
   }
 }
+
+// Service requests
+
+export type ServiceRequest = {
+  id: string
+  requestNumber: string
+  date: string
+  status: "new" | "in_progress" | "completed" | "cancelled"
+  subject: string
+  description: string
+}
+
+const MOCK_SERVICE_REQUESTS: ServiceRequest[] = [
+  {
+    id: "1",
+    requestNumber: "SRV-2026-0012",
+    date: "2026-02-10",
+    status: "in_progress",
+    subject: "Servis regulačního ventilu SAMSON 3241",
+    description: "Výměna pohonu a seřízení",
+  },
+  {
+    id: "2",
+    requestNumber: "SRV-2025-0098",
+    date: "2025-11-05",
+    status: "completed",
+    subject: "Preventivní údržba ventilové baterie",
+    description: "Plánovaná údržba 5 ventilů",
+  },
+]
+
+export async function getServiceRequests(
+  _companyId: string,
+): Promise<ServiceRequest[]> {
+  return MOCK_SERVICE_REQUESTS
+}
+
+export async function getServiceRequestById(
+  _companyId: string,
+  id: string,
+): Promise<ServiceRequest | null> {
+  return MOCK_SERVICE_REQUESTS.find((sr) => sr.id === id) ?? null
+}
+
+// Claims
+
+export type Claim = {
+  id: string
+  claimNumber: string
+  date: string
+  status: "new" | "investigating" | "resolved" | "rejected"
+  subject: string
+  description: string
+}
+
+const MOCK_CLAIMS: Claim[] = [
+  {
+    id: "1",
+    claimNumber: "REC-2026-0003",
+    date: "2026-01-15",
+    status: "investigating",
+    subject: "Vadný ventil typ 3241 — netěsnost",
+    description: "Ventil vykazuje netěsnost po 2 měsících provozu",
+  },
+]
+
+export async function getClaims(_companyId: string): Promise<Claim[]> {
+  return MOCK_CLAIMS
+}
+
+export async function getClaimById(
+  _companyId: string,
+  id: string,
+): Promise<Claim | null> {
+  return MOCK_CLAIMS.find((c) => c.id === id) ?? null
+}
+
+// Documents
+
+export type Document = {
+  id: string
+  name: string
+  type: string
+  fileUrl: string
+  uploadedAt: string
+}
+
+const MOCK_DOCUMENTS: Document[] = [
+  {
+    id: "1",
+    name: "Certifikát ventilu SAMSON 3241",
+    type: "certificate",
+    fileUrl: "/documents/cert-3241.pdf",
+    uploadedAt: "2026-01-10",
+  },
+  {
+    id: "2",
+    name: "Protokol o zkoušce",
+    type: "test_report",
+    fileUrl: "/documents/test-report-42.pdf",
+    uploadedAt: "2025-12-20",
+  },
+]
+
+export async function getDocuments(_companyId: string): Promise<Document[]> {
+  return MOCK_DOCUMENTS
+}

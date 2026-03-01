@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server"
 import { orderStatusWebhookSchema } from "@/lib/validations/webhooks"
 import { createNotification } from "@/lib/portal/notifications"
+import { sendEmail } from "@/lib/email/send"
+import { OrderStatusNotification } from "@/lib/email/templates/order-status-notification"
+import { getPortalUsersForEmail } from "@/lib/portal/get-email-recipients"
 
 const STATUS_LABELS: Record<string, string> = {
   pending: "Cekajici",
@@ -33,12 +36,19 @@ export async function POST(req: Request) {
     relatedUrl: `/portal/objednavky/${data.orderId}`,
   })
 
-  // TODO: Look up customer email from companyId
-  // await sendEmail({
-  //   to: customerEmail,
-  //   subject: `Objednavka ${data.orderNumber} — ${statusLabel}`,
-  //   react: OrderStatusNotification({ orderNumber: data.orderNumber, status: statusLabel, description: data.description }),
-  // })
+  // Send email to all active portal users with email notifications enabled
+  const recipients = await getPortalUsersForEmail(data.companyId, "order_status")
+  for (const recipient of recipients) {
+    await sendEmail({
+      to: recipient.email,
+      subject: `Objednavka ${data.orderNumber} — ${statusLabel}`,
+      react: OrderStatusNotification({
+        orderNumber: data.orderNumber,
+        status: statusLabel,
+        description: data.description,
+      }),
+    })
+  }
 
   console.log(`[Webhook] Order status: ${data.orderNumber} → ${data.status}`)
 

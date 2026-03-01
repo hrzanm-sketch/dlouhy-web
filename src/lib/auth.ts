@@ -45,6 +45,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/portal/login",
   },
   callbacks: {
+    authorized() {
+      // Let the middleware handle auth logic — always return true here
+      // so NextAuth doesn't auto-redirect to signIn
+      return true
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id!

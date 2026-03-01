@@ -1,61 +1,147 @@
-// TODO: Replace with real Drizzle queries against portal_notifications table
+import { db } from "@/lib/db"
+import {
+  portalNotifications,
+} from "@/lib/db/schema/portal-notifications"
+import { portalUsers } from "@/lib/db/schema/portal-users"
+import { eq, and, desc, count, isNull } from "drizzle-orm"
 
-export type PortalNotification = {
-  id: string
+export type CreateNotificationData = {
   companyId: string
-  type: "order_status" | "new_invoice" | "service_update" | "claim_update"
+  type: string
   title: string
   message: string
   relatedId: string
   relatedUrl: string
-  isRead: boolean
-  createdAt: string
 }
 
-// In-memory store for development (replaced by DB in production)
-const notifications: PortalNotification[] = []
+export async function createNotification(data: CreateNotificationData) {
+  // Look up all active portal users for this company
+  const users = await db
+    .select({ id: portalUsers.id })
+    .from(portalUsers)
+    .where(
+      and(
+        eq(portalUsers.companyId, data.companyId),
+        eq(portalUsers.isActive, true),
+        isNull(portalUsers.deletedAt),
+      ),
+    )
 
-export async function createNotification(data: Omit<PortalNotification, "id" | "isRead" | "createdAt">): Promise<PortalNotification> {
-  const notification: PortalNotification = {
-    ...data,
-    id: crypto.randomUUID(),
-    isRead: false,
-    createdAt: new Date().toISOString(),
+  if (users.length === 0) {
+    console.log(
+      `[Notification] No active portal users for company ${data.companyId}`,
+    )
+    return []
   }
-  notifications.unshift(notification)
-  // TODO: INSERT INTO portal_notifications VALUES (...)
-  console.log("[Notification] Created:", notification.title, "for company", data.companyId)
-  return notification
+
+  const rows = await db
+    .insert(portalNotifications)
+    .values(
+      users.map((u) => ({
+        userId: u.id,
+        type: data.type,
+        title: data.title,
+        body: data.message,
+        linkUrl: data.relatedUrl,
+      })),
+    )
+    .returning()
+
+  console.log(
+    `[Notification] Created ${rows.length} notification(s): "${data.title}" for company ${data.companyId}`,
+  )
+  return rows
 }
 
-export async function getNotifications(companyId: string): Promise<PortalNotification[]> {
-  // TODO: SELECT * FROM portal_notifications WHERE company_id = companyId ORDER BY created_at DESC
-  return notifications.filter((n) => n.companyId === companyId)
+export async function getNotifications(companyId: string) {
+  const users = await db
+    .select({ id: portalUsers.id })
+    .from(portalUsers)
+    .where(
+      and(
+        eq(portalUsers.companyId, companyId),
+        eq(portalUsers.isActive, true),
+        isNull(portalUsers.deletedAt),
+      ),
+    )
+
+  if (users.length === 0) return []
+
+  // For portal, typically one user per session — use first match
+  const userId = users[0].id
+
+  return db
+    .select()
+    .from(portalNotifications)
+    .where(eq(portalNotifications.userId, userId))
+    .orderBy(desc(portalNotifications.createdAt))
 }
 
 export async function getUnreadCount(companyId: string): Promise<number> {
-  // TODO: SELECT COUNT(*) FROM portal_notifications WHERE company_id = companyId AND is_read = false
-  return notifications.filter((n) => n.companyId === companyId && !n.isRead).length
+  const users = await db
+    .select({ id: portalUsers.id })
+    .from(portalUsers)
+    .where(
+      and(
+        eq(portalUsers.companyId, companyId),
+        eq(portalUsers.isActive, true),
+        isNull(portalUsers.deletedAt),
+      ),
+    )
+
+  if (users.length === 0) return 0
+
+  const userId = users[0].id
+
+  const result = await db
+    .select({ count: count() })
+    .from(portalNotifications)
+    .where(
+      and(
+        eq(portalNotifications.userId, userId),
+        eq(portalNotifications.isRead, false),
+      ),
+    )
+
+  return result[0]?.count ?? 0
 }
 
 export async function markAsRead(notificationId: string): Promise<boolean> {
-  // TODO: UPDATE portal_notifications SET is_read = true WHERE id = notificationId
-  const notification = notifications.find((n) => n.id === notificationId)
-  if (notification) {
-    notification.isRead = true
-    return true
-  }
-  return false
+  const result = await db
+    .update(portalNotifications)
+    .set({ isRead: true })
+    .where(eq(portalNotifications.id, notificationId))
+    .returning({ id: portalNotifications.id })
+
+  return result.length > 0
 }
 
 export async function markAllRead(companyId: string): Promise<number> {
-  // TODO: UPDATE portal_notifications SET is_read = true WHERE company_id = companyId AND is_read = false
-  let count = 0
-  for (const n of notifications) {
-    if (n.companyId === companyId && !n.isRead) {
-      n.isRead = true
-      count++
-    }
-  }
-  return count
+  const users = await db
+    .select({ id: portalUsers.id })
+    .from(portalUsers)
+    .where(
+      and(
+        eq(portalUsers.companyId, companyId),
+        eq(portalUsers.isActive, true),
+        isNull(portalUsers.deletedAt),
+      ),
+    )
+
+  if (users.length === 0) return 0
+
+  const userId = users[0].id
+
+  const result = await db
+    .update(portalNotifications)
+    .set({ isRead: true })
+    .where(
+      and(
+        eq(portalNotifications.userId, userId),
+        eq(portalNotifications.isRead, false),
+      ),
+    )
+    .returning({ id: portalNotifications.id })
+
+  return result.length
 }

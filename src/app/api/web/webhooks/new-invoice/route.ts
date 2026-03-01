@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server"
 import { newInvoiceWebhookSchema } from "@/lib/validations/webhooks"
 import { createNotification } from "@/lib/portal/notifications"
+import { sendEmail } from "@/lib/email/send"
+import { InvoiceNotification } from "@/lib/email/templates/invoice-notification"
+import { getPortalUsersForEmail } from "@/lib/portal/get-email-recipients"
 
 export async function POST(req: Request) {
   const apiKey = req.headers.get("X-API-Key")
@@ -30,7 +33,20 @@ export async function POST(req: Request) {
     relatedUrl: `/portal/faktury/${data.invoiceId}`,
   })
 
-  // TODO: Look up customer email and send notification
+  // Send email to all active portal users with email notifications enabled
+  const recipients = await getPortalUsersForEmail(data.companyId, "new_invoice")
+  for (const recipient of recipients) {
+    await sendEmail({
+      to: recipient.email,
+      subject: `Nova faktura ${data.invoiceNumber} — ${amountFormatted}`,
+      react: InvoiceNotification({
+        invoiceNumber: data.invoiceNumber,
+        amount: amountFormatted,
+        dueDate: data.dueDate,
+      }),
+    })
+  }
+
   console.log(`[Webhook] New invoice: ${data.invoiceNumber}`)
 
   return NextResponse.json({ success: true })
