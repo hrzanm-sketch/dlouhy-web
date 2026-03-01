@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import { DtLogo } from "@/components/shared/dt-logo"
 import { cn } from "@/lib/utils"
@@ -15,9 +14,9 @@ const QUICK_LINKS = [
 ]
 
 const PARTNERS = [
-  { name: "SAMSON", color: "bg-samson-blue", logo: "/images/logos/samson.png" },
-  { name: "SCHROEDAHL / CIRCOR", color: "bg-schroedahl-green", logo: null },
-  { name: "ELCO", color: "bg-elco-red", logo: "/images/logos/elco.png" },
+  { name: "SAMSON", color: "bg-samson-blue" },
+  { name: "SCHROEDAHL / CIRCOR", color: "bg-schroedahl-green" },
+  { name: "ELCO", color: "bg-elco-red" },
 ]
 
 export function Footer() {
@@ -72,29 +71,18 @@ export function Footer() {
           {/* Partners */}
           <div>
             <h3 className="text-lg font-bold text-white">Partneri</h3>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              {PARTNERS.map((partner) =>
-                partner.logo ? (
-                  <Image
-                    key={partner.name}
-                    src={partner.logo}
-                    alt={partner.name}
-                    width={100}
-                    height={32}
-                    className="h-8 w-auto brightness-0 invert"
-                  />
-                ) : (
-                  <span
-                    key={partner.name}
-                    className={cn(
-                      "rounded px-3 py-1 text-sm font-medium text-white",
-                      partner.color
-                    )}
-                  >
-                    {partner.name}
-                  </span>
-                )
-              )}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {PARTNERS.map((partner) => (
+                <span
+                  key={partner.name}
+                  className={cn(
+                    "rounded px-3 py-1 text-sm font-medium text-white",
+                    partner.color
+                  )}
+                >
+                  {partner.name}
+                </span>
+              ))}
             </div>
           </div>
         </div>

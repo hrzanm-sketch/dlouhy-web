@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 
 export function Hero() {
@@ -33,10 +32,10 @@ export function Hero() {
   )
 }
 
-const PARTNERS: { name: string; colorClass: string; logo: string | null }[] = [
-  { name: "SAMSON", colorClass: "text-samson-blue", logo: "/images/logos/samson.png" },
-  { name: "SCHROEDAHL / CIRCOR", colorClass: "text-schroedahl-green", logo: null },
-  { name: "ELCO", colorClass: "text-elco-red", logo: "/images/logos/elco.png" },
+const PARTNERS = [
+  { name: "SAMSON", colorClass: "text-samson-blue" },
+  { name: "SCHROEDAHL / CIRCOR", colorClass: "text-schroedahl-green" },
+  { name: "ELCO", colorClass: "text-elco-red" },
 ]
 
 export function PartnerBar() {
@@ -47,25 +46,14 @@ export function PartnerBar() {
           Autorizovaný distributor
         </span>
         <div className="flex items-center gap-8">
-          {PARTNERS.map((partner) =>
-            partner.logo ? (
-              <Image
-                key={partner.name}
-                src={partner.logo}
-                alt={partner.name}
-                width={120}
-                height={40}
-                className="h-8 w-auto"
-              />
-            ) : (
-              <span
-                key={partner.name}
-                className={`text-sm font-bold ${partner.colorClass}`}
-              >
-                {partner.name}
-              </span>
-            )
-          )}
+          {PARTNERS.map((partner) => (
+            <span
+              key={partner.name}
+              className={`text-lg font-bold tracking-tight ${partner.colorClass}`}
+            >
+              {partner.name}
+            </span>
+          ))}
         </div>
       </div>
     </section>
