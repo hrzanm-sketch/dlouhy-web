@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { signOut } from "next-auth/react"
 import { cn } from "@/lib/utils"
+import { NotificationBell } from "./notification-bell"
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/portal/dashboard", icon: "grid" },
@@ -155,10 +156,15 @@ export function PortalSidebar({
 
   const sidebarContent = (
     <>
-      {/* Company + User */}
+      {/* Company + User + Notifications */}
       <div className="border-b border-neutral-200 px-4 py-5">
-        <p className="text-sm font-semibold text-neutral-900">{companyName}</p>
-        <p className="mt-0.5 text-xs text-neutral-500">{userName}</p>
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-sm font-semibold text-neutral-900">{companyName}</p>
+            <p className="mt-0.5 text-xs text-neutral-500">{userName}</p>
+          </div>
+          <NotificationBell />
+        </div>
       </div>
 
       {/* Navigation */}
@@ -180,12 +186,6 @@ export function PortalSidebar({
                 >
                   <NavIcon name={item.icon} />
                   <span>{item.label}</span>
-                  {/* Notification badge for Objednavky */}
-                  {item.icon === "package" && (
-                    <span className="ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1.5 text-xs font-medium text-white">
-                      3
-                    </span>
-                  )}
                 </Link>
               </li>
             )
