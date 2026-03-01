@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 const manufacturerGradients: Record<string, string> = {
@@ -8,7 +9,7 @@ const manufacturerGradients: Record<string, string> = {
 }
 
 export function ImageGallery({
-  mainImage: _mainImage,
+  mainImage,
   galleryImages: _galleryImages,
   manufacturer,
   productName,
@@ -23,13 +24,24 @@ export function ImageGallery({
   return (
     <div
       className={cn(
-        "flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br",
+        "relative flex aspect-square items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br",
         gradient
       )}
     >
-      <span className="text-sm text-neutral-400">
-        {productName}
-      </span>
+      {mainImage ? (
+        <Image
+          src={mainImage}
+          alt={productName}
+          fill
+          className="object-contain p-8"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          priority
+        />
+      ) : (
+        <span className="text-sm text-neutral-400">
+          {productName}
+        </span>
+      )}
     </div>
   )
 }

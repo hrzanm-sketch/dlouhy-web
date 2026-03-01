@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { NavItems } from "@/components/layout/navigation"
 import { SearchBar } from "@/components/layout/search-bar"
+import { DtLogo } from "@/components/shared/dt-logo"
 import { cn } from "@/lib/utils"
 
 export function Header() {
@@ -14,8 +15,8 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="text-xl font-bold text-dt-blue">
-          Dlouhy Technology
+        <Link href="/" className="text-dt-blue">
+          <DtLogo className="h-8" />
         </Link>
 
         {/* Desktop nav */}

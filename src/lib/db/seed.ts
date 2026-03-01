@@ -56,6 +56,7 @@ async function main() {
           "Pneumatický regulační ventil pro univerzální průmyslové aplikace. Přírubové provedení DN 15–500, PN 16–40.",
         longDescription:
           "Regulační ventil Type 3241 je jednosedlový ventil s pneumatickým membránovým pohonem Type 3271. Ventil je vhodný pro regulaci průtoku kapalin, par a plynů v chemickém, petrochemickém a energetickém průmyslu. Nabízí širokou škálu materiálových provedení a vnitřních vestaveb pro optimální regulační charakteristiku.",
+        mainImage: "/images/products/3241.png",
         isFeatured: true,
         sortOrder: 1,
       },
@@ -69,6 +70,7 @@ async function main() {
           "Dvousedlový regulační ventil pro velké průtoky. Snížená potřeba ovládací síly, DN 25–400.",
         longDescription:
           "Type 3244 je dvousedlový regulační ventil navržený pro aplikace s velkými průtoky, kde je požadována nízká ovládací síla. Díky vyváženému kuželovému uzávěru je pohon menší a lehčí. Ventil je ideální pro regulaci v teplárenství, klimatizaci a procesním průmyslu.",
+        mainImage: "/images/products/3244.png",
         isFeatured: true,
         sortOrder: 2,
       },
@@ -130,6 +132,7 @@ async function main() {
           "Elektrický zdvihový pohon pro regulační ventily. Ovládací síla až 10 kN, signál 4–20 mA.",
         longDescription:
           "Elektrický pohon Type 3510 je určen pro ovládání regulačních ventilů SAMSON. Nabízí plynulou regulaci zdvihu s ovládacím signálem 4–20 mA nebo 0–10 V. Integrovaná elektronika zajišťuje přesné polohování a diagnostiku. K dispozici s funkcí fail-safe (pružina).",
+        mainImage: "/images/products/3510.png",
         sortOrder: 7,
       },
       {
@@ -167,6 +170,7 @@ async function main() {
           "Plynový modulační hořák s výkonem 120–1 000 kW. Nízké emise NOx, plně automatický provoz.",
         longDescription:
           "ELCO NEXTRON 8 je plynový modulační hořák určený pro komerční a průmyslové kotelny. Modulační rozsah 1:5 zajišťuje vysokou účinnost při proměnlivém zatížení. Nízké emise NOx splňují nejpřísnější emisní limity. Integrovaný řídicí systém zajišťuje plně automatický provoz včetně diagnostiky.",
+        mainImage: "/images/products/elco-produktova-rada-nextron.png",
         isFeatured: true,
         sortOrder: 1,
       },

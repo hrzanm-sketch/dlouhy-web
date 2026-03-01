@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 export type ProductCardData = {
@@ -30,13 +31,22 @@ export function ProductCard({ product }: { product: ProductCardData }) {
       href={`/produkty/${product.categorySlug}/${product.slug}`}
       className="group flex flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white transition-shadow hover:shadow-lg"
     >
-      {/* Image placeholder */}
+      {/* Image */}
       <div
         className={cn(
           "relative aspect-[4/3] bg-gradient-to-br to-neutral-100",
           colors.accent
         )}
       >
+        {product.mainImage && (
+          <Image
+            src={product.mainImage}
+            alt={product.name}
+            fill
+            className="object-contain p-4"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        )}
         <span
           className={cn(
             "absolute right-3 top-3 rounded px-2 py-0.5 text-xs font-semibold",
