@@ -1,0 +1,95 @@
+import Link from "next/link"
+import { cn, formatAmount, formatDate } from "@/lib/utils"
+
+export interface Invoice {
+  id: string
+  invoiceNumber: string
+  date: string
+  dueDate: string
+  status: "unpaid" | "paid" | "overdue"
+  amount: number
+}
+
+const STATUS_LABELS: Record<Invoice["status"], string> = {
+  unpaid: "Neuhrazeno",
+  paid: "Uhrazeno",
+  overdue: "Po splatnosti",
+}
+
+const STATUS_COLORS: Record<Invoice["status"], string> = {
+  unpaid: "bg-yellow-100 text-yellow-800",
+  paid: "bg-green-100 text-green-800",
+  overdue: "bg-red-100 text-red-800",
+}
+
+export function InvoicesTable({ invoices }: { invoices: Invoice[] }) {
+  if (invoices.length === 0) {
+    return (
+      <p className="py-8 text-center text-neutral-500">
+        Zadne faktury k zobrazeni.
+      </p>
+    )
+  }
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-left text-sm">
+        <thead>
+          <tr className="border-b border-neutral-200 text-neutral-500">
+            <th className="py-3 pr-4 font-medium">Cislo faktury</th>
+            <th className="py-3 pr-4 font-medium">Datum vystaveni</th>
+            <th className="py-3 pr-4 font-medium">Splatnost</th>
+            <th className="py-3 pr-4 font-medium">Stav</th>
+            <th className="py-3 pr-4 text-right font-medium">Castka</th>
+            <th className="py-3 text-right font-medium">Akce</th>
+          </tr>
+        </thead>
+        <tbody>
+          {invoices.map((invoice) => (
+            <tr
+              key={invoice.id}
+              className="border-b border-neutral-100 transition-colors hover:bg-neutral-50"
+            >
+              <td className="py-3 pr-4">
+                <Link
+                  href={`/portal/faktury/${invoice.id}`}
+                  className="font-medium text-dt-blue hover:underline"
+                >
+                  {invoice.invoiceNumber}
+                </Link>
+              </td>
+              <td className="py-3 pr-4 text-neutral-600">
+                {formatDate(invoice.date)}
+              </td>
+              <td className="py-3 pr-4 text-neutral-600">
+                {formatDate(invoice.dueDate)}
+              </td>
+              <td className="py-3 pr-4">
+                <span
+                  className={cn(
+                    "inline-block rounded-full px-2.5 py-0.5 text-xs font-medium",
+                    STATUS_COLORS[invoice.status]
+                  )}
+                >
+                  {STATUS_LABELS[invoice.status]}
+                </span>
+              </td>
+              <td className="py-3 pr-4 text-right font-medium">
+                {formatAmount(invoice.amount)}
+              </td>
+              <td className="py-3 text-right">
+                {/* TODO: implement PDF download */}
+                <button
+                  type="button"
+                  className="text-sm text-dt-blue hover:underline"
+                >
+                  PDF
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}

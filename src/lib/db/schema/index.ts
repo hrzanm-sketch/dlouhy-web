@@ -15,3 +15,8 @@ export {
 export { downloads } from "./downloads"
 export { webLeads, webLeadsRelations } from "./web-leads"
 export { webPageContent } from "./web-page-content"
+export { portalUsers, portalUsersRelations } from "./portal-users"
+export {
+  portalNotifications,
+  portalNotificationsRelations,
+} from "./portal-notifications"
