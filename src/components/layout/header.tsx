@@ -29,15 +29,18 @@ export function Header() {
           <SearchBar className="w-56" />
           <Link
             href="/portal/login"
-            className="text-sm text-neutral-500 transition-colors hover:text-dt-blue"
+            className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 px-3 py-2 text-sm font-medium text-neutral-700 transition-all duration-200 hover:border-dt-blue hover:text-dt-blue"
           >
-            Portal
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+            Portál
           </Link>
           <Link
             href="/poptavka"
             className="rounded-md bg-dt-blue px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-dt-blue-light"
           >
-            Poptavka
+            Poptávka
           </Link>
         </div>
 
@@ -127,16 +130,19 @@ export function Header() {
           <Link
             href="/portal/login"
             onClick={() => setMobileOpen(false)}
-            className="block rounded-md px-3 py-2 text-base text-neutral-500 transition-colors hover:text-dt-blue"
+            className="flex items-center gap-2 rounded-md border border-neutral-300 px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:border-dt-blue hover:text-dt-blue"
           >
-            Portal
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+            Portál
           </Link>
           <Link
             href="/poptavka"
             onClick={() => setMobileOpen(false)}
             className="mt-2 block rounded-md bg-dt-blue px-3 py-2 text-center text-base font-medium text-white transition-colors hover:bg-dt-blue-light"
           >
-            Poptavka
+            Poptávka
           </Link>
         </div>
       </div>
