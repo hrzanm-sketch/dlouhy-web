@@ -4,64 +4,56 @@ import { WhyDT } from "@/components/shared/why-dt"
 import { CTABlock } from "@/components/shared/cta-block"
 import { ReferenceCard } from "@/components/shared/reference-card"
 import { ArticleCard } from "@/components/shared/article-card"
+import { db } from "@/lib/db"
+import { references, articles } from "@/lib/db/schema"
+import { desc, isNull } from "drizzle-orm"
 
 export const revalidate = 86400
 
-const PLACEHOLDER_REFERENCES = [
-  {
-    customer: "ČEZ Teplárna Trmice",
-    industry: "teplarenstvi",
-    excerpt:
-      "Dodávka a montáž regulačních ventilů SAMSON pro parní rozvody v teplárně o výkonu 200 MW.",
-    year: 2024,
-    slug: "cez-teplarna-trmice",
-  },
-  {
-    customer: "Veolia Energie Praha",
-    industry: "energetika",
-    excerpt:
-      "Kompletní servis a výměna regulačních armatur na horkovodním napáječi.",
-    year: 2023,
-    slug: "veolia-energie-praha",
-  },
-  {
-    customer: "Dalkia Ostrava",
-    industry: "teplarenstvi",
-    excerpt:
-      "Instalace recirkulačních ventilů SCHROEDAHL pro ochranu napájecích čerpadel.",
-    year: 2023,
-    slug: "dalkia-ostrava",
-  },
-]
+async function getLatestReferences() {
+  try {
+    return await db
+      .select({
+        customer: references.customer,
+        industry: references.industry,
+        excerpt: references.excerpt,
+        year: references.year,
+        slug: references.slug,
+      })
+      .from(references)
+      .where(isNull(references.deletedAt))
+      .orderBy(desc(references.year), desc(references.createdAt))
+      .limit(3)
+  } catch {
+    return []
+  }
+}
 
-const PLACEHOLDER_ARTICLES = [
-  {
-    title: "Nová řada regulačních ventilů SAMSON Type 3241",
-    perex:
-      "SAMSON rozšiřuje portfolio o novou řadu kompaktních regulačních ventilů pro průmyslové aplikace.",
-    category: "produkt",
-    date: "2024-11-15",
-    slug: "nova-rada-samson-3241",
-  },
-  {
-    title: "Servisní workshop pro zákazníky 2024",
-    perex:
-      "Zveme vás na tradiční workshop zaměřený na údržbu a diagnostiku regulačních ventilů.",
-    category: "akce",
-    date: "2024-10-02",
-    slug: "servisni-workshop-2024",
-  },
-  {
-    title: "Jak správně dimenzovat regulační ventil",
-    perex:
-      "Praktický průvodce výběrem správné velikosti regulačního ventilu pro vaši aplikaci.",
-    category: "technika",
-    date: "2024-09-18",
-    slug: "dimenzovani-regulacniho-ventilu",
-  },
-]
+async function getLatestArticles() {
+  try {
+    return await db
+      .select({
+        title: articles.title,
+        perex: articles.perex,
+        category: articles.category,
+        date: articles.date,
+        slug: articles.slug,
+      })
+      .from(articles)
+      .where(isNull(articles.deletedAt))
+      .orderBy(desc(articles.date))
+      .limit(3)
+  } catch {
+    return []
+  }
+}
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [latestReferences, latestArticles] = await Promise.all([
+    getLatestReferences(),
+    getLatestArticles(),
+  ])
+
   return (
     <>
       <Hero />
@@ -71,32 +63,43 @@ export default function HomePage() {
       <CTABlock />
 
       {/* References */}
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold text-neutral-900 sm:text-4xl">
-            Naše reference
-          </h2>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {PLACEHOLDER_REFERENCES.map((ref) => (
-              <ReferenceCard key={ref.slug} {...ref} />
-            ))}
+      {latestReferences.length > 0 && (
+        <section className="py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center text-3xl font-bold text-neutral-900 sm:text-4xl">
+              Naše reference
+            </h2>
+            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {latestReferences.map((ref) => (
+                <ReferenceCard key={ref.slug} {...ref} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* News */}
-      <section className="bg-neutral-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold text-neutral-900 sm:text-4xl">
-            Novinky
-          </h2>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {PLACEHOLDER_ARTICLES.map((article) => (
-              <ArticleCard key={article.slug} {...article} />
-            ))}
+      {latestArticles.length > 0 && (
+        <section className="bg-neutral-50 py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center text-3xl font-bold text-neutral-900 sm:text-4xl">
+              Novinky
+            </h2>
+            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {latestArticles.map((article) => (
+                <ArticleCard
+                  key={article.slug}
+                  title={article.title}
+                  perex={article.perex}
+                  category={article.category}
+                  date={article.date.toISOString()}
+                  slug={article.slug}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   )
 }
