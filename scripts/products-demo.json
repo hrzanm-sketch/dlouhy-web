@@ -1,0 +1,358 @@
+[
+  {
+    "type_number": "3241",
+    "name": "Přímý regulační ventil",
+    "slug": "3241-primy-ventil",
+    "description": "Přímý ventil se závitovým sedlem typu 3241 je konstruován pro univerzální použití až do jmenovitého tlaku PN40 a jmenovité světlosti DN300. Ventil typu 3241 má několik standardních variant, nabízí například izolační díl, těsnící kovový vlnovec, topný plášť, kovové dosedací plochy se zvýšenou těsností, kuželku s měkkým těsněním, usměrňovače proudění pro snížení hlučnosti a také několik typů anti kavitačních garnitur. Kromě těchto variant mohou být",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 300,
+      "pn_min": 16,
+      "pn_max": 40,
+      "temp_min": -196,
+      "temp_max": 450
+    },
+    "image": "3241.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3241-primy-ventil"
+  },
+  {
+    "type_number": "3244",
+    "name": "Třícestný ventil",
+    "slug": "3244-trojcestny-ventil",
+    "description": "Třícestný ventil se závitovým sedlem typu 3244 je konstruován pro univerzální použití až do jmenovitého tlaku PN40 a jmenovité světlosti DN150. Ventil typu 3244 má několik standardních variant, nabízí například izolační díl, těsnicí kovový vlnovec, topný plášť a kuželku s měkkým těsněním. Kromě těchto variant mohou být ventily přizpůsobeny přesně v souladu se speciálními procesními potřebami, například armatury pro kyslík nebo provedení dle NACE,",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 150,
+      "pn_min": 10,
+      "pn_max": 40,
+      "temp_min": -196,
+      "temp_max": 450
+    },
+    "image": "3244.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3244-trojcestny-ventil"
+  },
+  {
+    "type_number": "3351",
+    "name": "Uzavírací přímý ventil",
+    "slug": "3351-on-off-globe-valve",
+    "description": "Pneumatický uzavírací ventil se závitovým sedlem typu 3351 se používá v případech vyžadujících velmi těsné uzavření přívodu kapalin, plynů nebo par. Uzavírací ventil typu 3351 může být variantně dodán s izolačním dílem nebo s utěsněním kovovým vlnovcem. Uzavírací ventil typu 3351 je vybaven pneumatickým pohonem, volitelně lze ke konstrukci uzavíracího ventilu přidat ruční ovládací kolo. Tyto ventily jsou konstruovány jako modulární sestavy a mohou",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 100,
+      "pn_min": 10,
+      "pn_max": 40
+    },
+    "image": "3351.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3351-on-off-globe-valve"
+  },
+  {
+    "type_number": "3345",
+    "name": "Membránový ventil",
+    "slug": "3345-diaphragm-valve",
+    "description": "Regulační ventil 3345 je konstruován pro viskózní, korozivní a abrazivní kapaliny a je vyráběn v souladu s normami DIN, BS nebo ANSI. Membrána ventilu plní funkci kuželky. Průtok ventilem závisí na volném průřezu mezi membránou a dolní částí tělesa ventilu. Táhlo pohonu je vybaveno dorazy, které omezují velikost síly a chrání membránu. Různé materiály membrány (butyl, EPDM, PTFE, přírodní pryž, FKM atd.) umožňují používání ventilu s různými typy p",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 150
+    },
+    "image": "3345.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3345-diaphragm-valve"
+  },
+  {
+    "type_number": "3347",
+    "name": "Potravinářský regulační rohový ventil",
+    "slug": "3347-hygienic-angle-control-valve",
+    "description": "Potravinářský regulační rohový ventil typu 3347 je konstruován pro použití v provozech výroby potravin, nápojů a farmaceutik, kde se vyžadují přísné hygienické podmínky. Těleso ventilu je konstruováno bez mrtvých míst a má jemně obráběný, leštěný, vysoce leštěný nebo zrcadlově leštěný povrch vnitřních i vnějších ploch. K utěsnění tělesa, krytu a táhla kuželky jsou použita vodící pouzdra s těsněním z PTFE. V případě ještě přísnějších požadavků na č",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 125,
+      "temp_min": 0,
+      "temp_max": 150
+    },
+    "image": "3347.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3347-hygienic-angle-control-valve"
+  },
+  {
+    "type_number": "3349",
+    "name": "Aseptický rohový regulační ventil",
+    "slug": "3349-aseptic-angle-control-valve",
+    "description": "Aseptický rohový regulační ventil typu 3349 je konstruován pro použití v provozech výroby potravin, nápojů a farmaceutik. Využívá utěsnění pomocí membrány USP-VI. Těleso ventilu je konstruováno bez mrtvých míst a má jemně obráběný, leštěný, vysoce leštěný nebo zrcadlově leštěný povrch vnitřních i vnějších ploch a vodítko táhla je utěsněno membránou. Kontrolní přípojka umožňuje monitorování těsnosti membrány. Toto konstrukční provedení je možné čis",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 100
+    },
+    "image": "3349.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3349-aseptic-angle-control-valve"
+  },
+  {
+    "type_number": "3249",
+    "name": "Aseptický rohový regulační ventil",
+    "slug": "3249-aseptic-control-valve",
+    "description": "Aseptický rohový regulační ventil typu 3349 je konstruován pro použití v provozech výroby potravin, nápojů a farmaceutik. Využívá membránu USP-VI. Těleso ventilu je konstruováno bez mrtvých míst a má jemně obráběný, leštěný, vysoce leštěný nebo zrcadlově leštěný povrch vnitřních i vnějších ploch a vodítko táhla je utěsněno membránou. Kontrolní přípojka umožňuje monitorování těsnosti membrány. Toto konstrukční provedení je možné čistit a sterilizov",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 100
+    },
+    "image": "3249.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3249-aseptic-control-valve"
+  },
+  {
+    "type_number": "3246",
+    "name": "Kryogenní regulační ventil",
+    "slug": "3246-cryogenic-control-valve",
+    "description": "Přímý regulační ventil se závitovým sedlem typu 3246 je určen pro kryogenní média až do jmenovitého tlaku PN160. Součástí ventilu je dlouhý izolační díl s vnitřním omezovačem cirkulace, který minimalizuje vliv média protékajícího do izolačního dílu. Regulační ventil typu 3246 pro kryogenní média je možné dodávat v rohovém provedení pro jmenovitý tlak PN40 a nižší a také v provedení s perforovanou kuželkou nebo také jako trojcestný ventil. Ventil t",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 250,
+      "pn_min": 16,
+      "pn_max": 160
+    },
+    "image": "3246.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3246-cryogenic-control-valve"
+  },
+  {
+    "type_number": "3248",
+    "name": "Kryogenní regulační ventil s horním vstupem",
+    "slug": "3248-top-entry-cryogenic-control-valve",
+    "description": "Přímý / rohový regulační ventil se závitovým sedlem a horním vstupem typu 3248 je určen k použití pro kryogenní média až do jmenovitého tlaku PN100. Tyto regulační ventily jsou specificky konstruovány tak, aby splňovaly požadavky pro kryogenní aplikace. Umožňuje to horní díl ventilu s přírubovým víkem, který usnadní instalaci ve vakuem izolovaných potrubích a zařízeních pro separaci vzduchu. Také to umožňuje standardní řešení s kovovým vlnovcem uv",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 25,
+      "dn_max": 150,
+      "pn_min": 16,
+      "pn_max": 100
+    },
+    "image": "3248.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3248-top-entry-cryogenic-control-valve"
+  },
+  {
+    "type_number": "3381",
+    "name": "Výstupní tlumič",
+    "slug": "3381-downstream-silencer",
+    "description": "Výstupní tlumič 3381 slouží především ke snížení hlučnosti. Plní funkci pevného škrtícího prvku. Systém tlumiče vytváří protitlak na výstupu z ventilu, který v tomto místě zvyšuje tlak média a umožňuje tlumiči 3381 pokrýt konečné požadované snížení provozního tlaku v systému. Výsledkem rozdělení požadovaného tlakového spádu mezi regulační ventil a tlumič je snížení hladiny akustického tlaku. V aplikacích pracujících se stlačitelným médiem rovněž s",
+    "category": "Přímé, trojcestné a rohové ventily (řada 240)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 40,
+      "dn_max": 800,
+      "pn_min": 10,
+      "pn_max": 400
+    },
+    "image": "3381.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3381-downstream-silencer"
+  },
+  {
+    "type_number": "3251",
+    "name": "Přímý regulační ventil pro náročné aplikace",
+    "slug": "3251-heavy-duty-globe-control-valve",
+    "description": "Přímý regulační ventil se závitovým sedlem typu 3251 je určen pro univerzální použití až do jmenovitého tlaku PN400. Ventil umožňuje použití pro aplikace, které lze nalézt ve většině průmyslových oborů a které se vyznačují mimo jiné například zhoršenými provozními podmínkami z hlediska eroze, abraze a koroze a nebo přítomností kavitace, případně flashingu. Tyto regulační ventily mají několik standardních variant, nabízí například izolační díl, těs",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 500,
+      "pn_min": 16,
+      "pn_max": 400
+    },
+    "image": "3251.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3251-heavy-duty-globe-control-valve"
+  },
+  {
+    "type_number": "3251",
+    "name": "E - Přímý regulační ventil pro náročné aplikace",
+    "slug": "3251-e",
+    "description": "Přímý regulační ventil se závitovým sedlem typu 3251-E je určen pro univerzální použití až do jmenovitého tlaku ANSI Class 600. Ventil umožňuje použití pro aplikace, které lze nalézt ve většině průmyslových oborů a které se vyznačují mimo jiné například zhoršenými provozními podmínkami z hlediska eroze, abraze a koroze a nebo přítomností kavitace, případně flashingu. Tyto regulační ventily mají několik standardních variant, nabízí například izolač",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {},
+    "image": "3251.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3251-e"
+  },
+  {
+    "type_number": "3510",
+    "name": "Mikroventil",
+    "slug": "3510-microflow-valve",
+    "description": "Regulační mikroventil se závitovým sedlem typu 3510 je určen pro aplikace s malými průtoky až do jmenovitého tlaku PN400. Ventil umožňuje použití pro aplikace, které lze nalézt ve většině průmyslových oborů a které se vyznačují mimo jiné například zhoršenými provozními podmínkami z hlediska eroze, abraze a koroze a nebo přítomností kavitace, případně flashingu. Regulační ventil typu 3510 má několik standardních variant, nabízí například izolační d",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 10,
+      "dn_max": 25,
+      "pn_min": 40,
+      "pn_max": 400
+    },
+    "image": "3510.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3510-microflow-valve"
+  },
+  {
+    "type_number": "3252",
+    "name": "Vysokotlaký regulační ventil",
+    "slug": "3252-high-pressure-control-valve",
+    "description": "Přímý nebo rohový regulační ventil se závitovým sedlem pro malé průtoky typu 3252 je určen pro provozy s nízkým průtokem až do jmenovitého tlaku PN400. Ventil umožňuje použití pro aplikace s nízkým průtokem, které lze nalézt ve většině průmyslových oborů a které se vyznačují mimo jiné například zhoršenými provozními podmínkami z hlediska eroze, abraze a koroze a nebo přítomností kavitace případně flashingu. Regulační ventil typu 3252 má několik st",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 25,
+      "pn_min": 40,
+      "pn_max": 400
+    },
+    "image": "3252.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3252-high-pressure-control-valve"
+  },
+  {
+    "type_number": "3253",
+    "name": "Třícestný regulační ventil pro náročné aplikace",
+    "slug": "3253-heavy-duty-3-way-control-valve",
+    "description": "Třícestný regulační ventil se závitovým sedlem typu 3253 je určen pro univerzální použití až do jmenovitého tlaku PN400. Ventil je určen především pro směšování a rozdělování procesních kapalin, které se využívají ve většině průmyslových oborů k řízení procesů. Regulační ventil typu 3253 má několik standardních variant, nabízí například izolační díl, těsnicí kovový vlnovec a topný plášť. Kromě těchto variant mohou být ventily přizpůsobeny přesně p",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 500,
+      "pn_min": 10,
+      "pn_max": 400
+    },
+    "image": "3253.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3253-heavy-duty-3-way-control-valve"
+  },
+  {
+    "type_number": "3254",
+    "name": "Přímý regulační ventil s dvojitým vedením",
+    "slug": "3254-double-guided-globe-control-valve",
+    "description": "Přímý regulační ventil se závitovým sedlem typu 3254 je určen pro aplikace s vysokými procesními nároky až do jmenovitého tlaku PN400. Ventil umožňuje použití pro aplikace, které lze nalézt ve většině průmyslových oborů a které se vyznačují mimo jiné například zhoršenými provozními podmínkami z hlediska eroze, abraze a koroze a nebo přítomností kavitace, případně flashingu. Tyto ventily mají několik standardních variant, nabízí například izolační",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 80,
+      "dn_max": 500,
+      "pn_min": 16,
+      "pn_max": 400
+    },
+    "image": "3254.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3254-double-guided-globe-control-valve"
+  },
+  {
+    "type_number": "3256",
+    "name": "Rohový regulační ventil pro náročné aplikace",
+    "slug": "3256-heavy-duty-angle-control-valve",
+    "description": "Rohový regulační ventil se závitovým sedlem typu 3256 je určen pro aplikace s vysokými procesními nároky až do jmenovitého tlaku PN400. Takové použití zahrnuje procesy, které lze nalézt ve většině průmyslových oborů a které se vyznačují mimo jiné například zhoršenými provozními podmínkami z hlediska eroze, abraze a koroze a nebo přítomností kavitace, případně flashingu. Tyto ventily mají několik standardních variant, nabízí například izolační díl,",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 15,
+      "dn_max": 500,
+      "pn_min": 16,
+      "pn_max": 400
+    },
+    "image": "3256.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3256-heavy-duty-angle-control-valve"
+  },
+  {
+    "type_number": "3259",
+    "name": "Rohový ventil",
+    "slug": "3259-angle-valve",
+    "description": "Regulační ventil 3259 je konstruován pro průmyslové vysokotlaké aplikace podle normy IG. Tento ventil má několik standardních variant, nabízí například izolační díl, těsnicí kovový vlnovec, topný plášť, kovové dosedací plochy se zvýšenou těsností, kuželku s měkkým těsněním, usměrňovače proudění pro snížení hlučnosti a také několik typů antikavitačních garnitur atd. Kromě těchto variant mohou být ventily přizpůsobeny přesně podle procesních potřeb,",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {
+      "dn_min": 16,
+      "dn_max": 90
+    },
+    "image": "3259.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3259-angle-valve"
+  },
+  {
+    "type_number": "3291",
+    "name": "Přímý regulační ventil pro náročné aplikace",
+    "slug": "3291-heavy-duty-globe-control-valve",
+    "description": "Přímý regulační ventil se zajištěným sedlem typu 3291 je určen pro univerzální použití až do jmenovitého tlaku ANSI 900. Ventil umožňuje použití pro aplikace, které lze nalézt ve většině průmyslových oborů a které se vyznačují mimo jiné například zhoršenými provozními podmínkami z hlediska eroze, abraze a koroze a nebo přítomností kavitace, případně flashingu. Tento ventil má několik standardních variant, nabízí například izolační díl, těsnicí kov",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {},
+    "image": "3291.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3291-heavy-duty-globe-control-valve"
+  },
+  {
+    "type_number": "3296",
+    "name": "Rohový regulační ventil pro náročné aplikace",
+    "slug": "3296-heavy-duty-angle-control-valve",
+    "description": "Přímý regulační ventil se zajištěným sedlem typu 3296 je určen pro univerzální použití až do jmenovitého tlaku ANSI 900. Ventil umožňuje použití pro aplikace, které lze nalézt ve většině průmyslových oborů a které se vyznačují mimo jiné například zhoršenými provozními podmínkami z hlediska eroze, abraze a koroze a nebo přítomností kavitace, případně flashingu. Tento ventil má několik standardních variant, nabízí například izolační díl, těsnicí kov",
+    "category": "Přímé, trojcestné a rohové ventily (řada 250, 290 a 590)",
+    "manufacturer": "SAMSON",
+    "specs": {},
+    "image": "3296.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-samson-cz/3296-heavy-duty-angle-control-valve"
+  },
+  {
+    "type_number": "",
+    "name": "produktová řada VECTRON",
+    "slug": "rada-horaku-vectron",
+    "description": "Základní řada monoblokových hořáků ELCO VECTRON pro vytápění, komerční využití a aplikace v lehkém průmyslu. VECTRON G1 až G6 (14,5 kW až 1907 kW) - plynové VECTRON GL2 až GL06 (35 kW až 2050 kW) - dvoupalivové VECTRON L1 až L6 (18 kW až 2080 kW) - lehký topný olej VECTRON L1 BIO (16 kW až 100 kW) - biopaliva Hlavní výhody řady hořáků ELCO VECTRON- velký výkonový rozsah- široká volba typů výkonové regulace- intuitivní a interaktivní ovládací rozhr",
+    "category": "Hořáky",
+    "manufacturer": "ELCO",
+    "specs": {},
+    "image": "elco-rada-horaku-vectron.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-elco-cz/rada-horaku-vectron"
+  },
+  {
+    "type_number": "",
+    "name": "produktová řada PROTRON",
+    "slug": "proton",
+    "description": "Řada monoblokových hořáků ELCO PROTRON vyvinutá především pro použití v lehkém průmyslu. Ideální produkt pro průmyslové pece, sušárny, malé spalovny a teplovzdušné jednotky. PROTRON P1 až P3 G (17 kW až 500 kW) - plynové PROTRON P1 až P3 L (18 kW až 546 kW) - lehký topný olej Hlavní výhody řady hořáků ELCO PROTRON- dva různé typy konstrukčního provedení (pistolový a kompaktní)- velký výkonový rozsah- kovové tělo- široká volba typů výkonové regulac",
+    "category": "Hořáky",
+    "manufacturer": "ELCO",
+    "specs": {},
+    "image": "elco-proton.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-elco-cz/proton"
+  },
+  {
+    "type_number": "",
+    "name": "produktová řada EK-TRON",
+    "slug": "ek-tron",
+    "description": "Hořáky Elco EK-TRON splní i nejpřísnější požadavky na emise s širokou škálou možností regulace výkonu a komunikace. Firma Dlouhy Technology nabízí konfiguraci hořáku na míru i s uvedením do provozu a záručním a pozáručním servisem. Hlavní výhody řady hořáků ELCO EK-TRON- velký výkonový rozsah- široká volba typů výkonové regulace- intuitivní a interaktivní ovládací rozhraní- nízké emisní limity- nejnovější dostupná technologie- při použití technolo",
+    "category": "Hořáky",
+    "manufacturer": "ELCO",
+    "specs": {},
+    "image": "elco-ek-tron.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-elco-cz/ek-tron"
+  },
+  {
+    "type_number": "",
+    "name": "produktová řada NEXTRON",
+    "slug": "produktova-rada-nextron",
+    "description": "Řada monoblokových hořáků ELCO NEXTRON představuje jedinečné technické řešení s unikátními vlastnostmi především v oblasti emisí a hlučnosti. Konstrukce těla hořáku díky své široké variabilitě umožňuje kompaktní zabudování elektrorozvaděče, výkonového regulátoru a nebo frekvenčního měniče. NEXTRON N6 až N9 G (390 kW až 11200 kW) - plynové NEXTRON N6 až N9 GL (250 kW až 9 570 kW) - dvoupalivové NEXTRON N6 až N9 L (360 kW až 10 620 kW) - lehký topný",
+    "category": "Hořáky",
+    "manufacturer": "ELCO",
+    "specs": {},
+    "image": "elco-produktova-rada-nextron.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-elco-cz/produktova-rada-nextron"
+  },
+  {
+    "type_number": "",
+    "name": "produktová řada EK EVO",
+    "slug": "produktova-rada-ek-evo",
+    "description": "Řada monoblokových hořáků ELCO EK EVO představuje robustní a profesionální řadu hořáků s hliníkovým tělem. Tato řada hořáků se vyznačuje především širokou konstrukční variabilitou provedení. Konstrukce umožňuje levostranný a pravostranný přívod vzduchu stejně jako orientaci plamene směrem nahoru nebo dolů. EK EVO 6 až 9 G (340 kW až 13 500 kW) - plynové EK EVO 6 až 9 GL (250 kW až 10 620 kW) - dvoupalivové Hlavní výhody řady hořáků ELCO EK EVO- va",
+    "category": "Hořáky",
+    "manufacturer": "ELCO",
+    "specs": {},
+    "image": "elco-produktova-rada-ek-evo.png",
+    "source_url": "https://dlouhytechnology.com/cz/produkty-elco-cz/produktova-rada-ek-evo"
+  }
+]
