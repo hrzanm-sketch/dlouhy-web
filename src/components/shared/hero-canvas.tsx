@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 
 const FRAME_COUNT = 30
-const FRAME_DURATION = 72
+const FRAME_DURATION = 65
 const BG_SRC = "/images/hero/hero-bg.png"
 const VALVES_SRC = "/images/hero/hero-valves.png"
 const ANIM_SRCS = Array.from(
