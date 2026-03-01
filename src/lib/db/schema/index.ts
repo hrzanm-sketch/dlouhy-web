@@ -20,3 +20,5 @@ export {
   portalNotifications,
   portalNotificationsRelations,
 } from "./portal-notifications"
+export { references } from "./references"
+export { articles } from "./articles"

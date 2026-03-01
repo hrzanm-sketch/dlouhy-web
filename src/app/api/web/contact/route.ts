@@ -1,28 +1,30 @@
-"use server"
-
+import { NextResponse } from "next/server"
 import { contactSchema } from "@/lib/validations/contact"
 import { db } from "@/lib/db"
 import { webLeads } from "@/lib/db/schema"
-import { headers } from "next/headers"
-import { rateLimit } from "@/lib/rate-limit"
 import { sendEmail } from "@/lib/email/send"
 import { ContactConfirmation } from "@/lib/email/templates/contact-confirmation"
+import { rateLimit } from "@/lib/rate-limit"
+import { headers } from "next/headers"
 
-export async function submitContact(data: unknown) {
+export const dynamic = "force-dynamic"
+
+export async function POST(request: Request) {
   const headersList = await headers()
   const ip = headersList.get("x-forwarded-for") || "unknown"
 
   const { success } = rateLimit(ip)
   if (!success) {
-    return {
-      success: false,
-      error: "Prilis mnoho pozadavku. Zkuste to za chvili.",
-    }
+    return NextResponse.json(
+      { error: "Prilis mnoho pozadavku. Zkuste to za chvili." },
+      { status: 429 }
+    )
   }
 
-  const parsed = contactSchema.safeParse(data)
+  const body = await request.json()
+  const parsed = contactSchema.safeParse(body)
   if (!parsed.success) {
-    return { success: false, error: "Neplatna data" }
+    return NextResponse.json({ error: "Neplatna data" }, { status: 400 })
   }
 
   try {
@@ -36,7 +38,7 @@ export async function submitContact(data: unknown) {
       subject: "Kontaktni formular",
       message: parsed.data.message,
       gdprConsent: true,
-      sourceUrl: "/kontakt",
+      sourceUrl: "/api/web/contact",
       ipAddress: ip,
     })
 
@@ -48,12 +50,12 @@ export async function submitContact(data: unknown) {
       }),
     })
 
-    return { success: true }
+    return NextResponse.json({ success: true })
   } catch (e) {
     console.error("Failed to save contact:", e)
-    return {
-      success: false,
-      error: "Nepodarilo se odeslat zpravu. Zkuste to pozdeji.",
-    }
+    return NextResponse.json(
+      { error: "Nepodarilo se odeslat zpravu." },
+      { status: 500 }
+    )
   }
 }

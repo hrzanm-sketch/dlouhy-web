@@ -1,28 +1,30 @@
-"use server"
-
+import { NextResponse } from "next/server"
 import { inquirySchema } from "@/lib/validations/inquiry"
 import { db } from "@/lib/db"
 import { webLeads } from "@/lib/db/schema"
-import { headers } from "next/headers"
-import { rateLimit } from "@/lib/rate-limit"
 import { sendEmail } from "@/lib/email/send"
 import { InquiryConfirmation } from "@/lib/email/templates/inquiry-confirmation"
+import { rateLimit } from "@/lib/rate-limit"
+import { headers } from "next/headers"
 
-export async function submitInquiry(data: unknown) {
+export const dynamic = "force-dynamic"
+
+export async function POST(request: Request) {
   const headersList = await headers()
   const ip = headersList.get("x-forwarded-for") || "unknown"
 
   const { success } = rateLimit(ip)
   if (!success) {
-    return {
-      success: false,
-      error: "Prilis mnoho pozadavku. Zkuste to za chvili.",
-    }
+    return NextResponse.json(
+      { error: "Prilis mnoho pozadavku. Zkuste to za chvili." },
+      { status: 429 }
+    )
   }
 
-  const parsed = inquirySchema.safeParse(data)
+  const body = await request.json()
+  const parsed = inquirySchema.safeParse(body)
   if (!parsed.success) {
-    return { success: false, error: "Neplatna data" }
+    return NextResponse.json({ error: "Neplatna data" }, { status: 400 })
   }
 
   try {
@@ -39,7 +41,7 @@ export async function submitInquiry(data: unknown) {
       productId: parsed.data.productId || null,
       gdprConsent: true,
       newsletterConsent: parsed.data.newsletterConsent || false,
-      sourceUrl: "/poptavka",
+      sourceUrl: "/api/web/inquiry",
       ipAddress: ip,
     })
 
@@ -52,12 +54,12 @@ export async function submitInquiry(data: unknown) {
       }),
     })
 
-    return { success: true }
+    return NextResponse.json({ success: true })
   } catch (e) {
     console.error("Failed to save inquiry:", e)
-    return {
-      success: false,
-      error: "Nepodarilo se odeslat poptavku. Zkuste to pozdeji.",
-    }
+    return NextResponse.json(
+      { error: "Nepodarilo se odeslat poptavku." },
+      { status: 500 }
+    )
   }
 }

@@ -6,6 +6,8 @@ import { fileURLToPath } from "url"
 import { Products } from "@/payload/collections/Products"
 import { Categories } from "@/payload/collections/Categories"
 import { Downloads } from "@/payload/collections/Downloads"
+import { References } from "@/payload/collections/References"
+import { Articles } from "@/payload/collections/Articles"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,6 +34,8 @@ export default buildConfig({
     Products,
     Categories,
     Downloads,
+    References,
+    Articles,
   ],
   typescript: {
     outputFile: path.resolve(dirname, "src/payload-types.ts"),
