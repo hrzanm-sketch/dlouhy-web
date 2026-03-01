@@ -5,7 +5,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Kontakt | Dlouhy Technology",
   description:
-    "Kontaktujte Dlouhy Technology s.r.o. — vyhradni distributor SAMSON pro CR a SK. Sidlo Praha, servisni stredisko Usti nad Labem.",
+    "Kontaktujte DLOUHY TECHNOLOGY s.r.o. — výhradní distributor SAMSON pro ČR a SK. Sídlo Praha, pobočky Žilina a Tbilisi.",
 }
 
 export default function KontaktPage() {
@@ -35,24 +35,24 @@ export default function KontaktPage() {
         <div className="space-y-8">
           <div>
             <h2 className="mb-4 text-xl font-semibold text-neutral-900">
-              Dlouhy Technology s.r.o.
+              DLOUHY TECHNOLOGY s.r.o.
             </h2>
             <div className="space-y-3 text-sm text-neutral-600">
               <div>
-                <p className="font-medium text-neutral-700">Sidlo</p>
-                <p>Touzimska 610/16</p>
-                <p>197 00 Praha 9 — Kbely</p>
+                <p className="font-medium text-neutral-700">Česká republika</p>
+                <p>Jinonická 759/24</p>
+                <p>150 00 Praha 5</p>
               </div>
               <div>
-                <p className="font-medium text-neutral-700">Servisni stredisko</p>
-                <p>Jateční 1531/6</p>
-                <p>400 01 Ústí nad Labem</p>
+                <p className="font-medium text-neutral-700">Slovensko</p>
+                <p>Stárkova 7</p>
+                <p>010 01 Žilina</p>
               </div>
               <div>
                 <p className="font-medium text-neutral-700">Telefon</p>
                 <p>
-                  <a href="tel:+420283932575" className="hover:text-dt-blue">
-                    +420 283 932 575
+                  <a href="tel:+420226800800" className="hover:text-dt-blue">
+                    +420 226 800 800
                   </a>
                 </p>
               </div>
@@ -60,16 +60,20 @@ export default function KontaktPage() {
                 <p className="font-medium text-neutral-700">Email</p>
                 <p>
                   <a
-                    href="mailto:info@dlouhy-technology.cz"
+                    href="mailto:info@dlouhytechnology.com"
                     className="hover:text-dt-blue"
                   >
-                    info@dlouhy-technology.cz
+                    info@dlouhytechnology.com
                   </a>
                 </p>
               </div>
               <div>
-                <p className="font-medium text-neutral-700">ICO</p>
-                <p>27167658</p>
+                <p className="font-medium text-neutral-700">IČO</p>
+                <p>28498712</p>
+              </div>
+              <div>
+                <p className="font-medium text-neutral-700">DIČ</p>
+                <p>CZ28498712</p>
               </div>
             </div>
           </div>

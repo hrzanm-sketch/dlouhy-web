@@ -26,25 +26,25 @@ export function Footer() {
           {/* Company info */}
           <div>
             <h3 className="text-lg font-bold text-white">
-              Dlouhy Technology s.r.o.
+              DLOUHY TECHNOLOGY s.r.o.
             </h3>
             <address className="mt-4 space-y-1 text-sm not-italic">
-              <p>Prumyslova 1472/11</p>
-              <p>102 00 Praha 10</p>
+              <p>Jinonická 759/24</p>
+              <p>150 00 Praha 5</p>
               <p className="mt-3">
                 <a
-                  href="tel:+420272700100"
+                  href="tel:+420226800800"
                   className="transition-colors hover:text-white"
                 >
-                  +420 272 700 100
+                  +420 226 800 800
                 </a>
               </p>
               <p>
                 <a
-                  href="mailto:info@dlouhy-technology.cz"
+                  href="mailto:info@dlouhytechnology.com"
                   className="transition-colors hover:text-white"
                 >
-                  info@dlouhy-technology.cz
+                  info@dlouhytechnology.com
                 </a>
               </p>
             </address>
@@ -91,7 +91,7 @@ export function Footer() {
       <div className="border-t border-neutral-800">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm text-neutral-500">
-            &copy; 2026 Dlouhy Technology s.r.o. Vsechna prava vyhrazena.
+            &copy; 2026 DLOUHY TECHNOLOGY s.r.o. Všechna práva vyhrazena.
           </p>
         </div>
       </div>
