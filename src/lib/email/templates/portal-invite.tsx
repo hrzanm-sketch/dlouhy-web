@@ -21,7 +21,7 @@ export function PortalInvite({ firstName, companyName, inviteUrl }: Props) {
             <Text style={heading}>Pozvánka do zákaznického portálu</Text>
             <Text style={text}>
               Dobrý den {firstName}, byl Vám vytvořen přístup do zákaznického portálu
-              Dlouhý Technology pro společnost {companyName}.
+              Dlouhy Technology pro společnost {companyName}.
             </Text>
             <Text style={text}>
               Pro nastavení hesla a první přihlášení klikněte na následující odkaz:
@@ -38,7 +38,7 @@ export function PortalInvite({ firstName, companyName, inviteUrl }: Props) {
           <Hr style={hr} />
           <Section>
             <Text style={footer}>
-              <strong>Dlouhý Technology s.r.o.</strong>
+              <strong>Dlouhy Technology s.r.o.</strong>
               <br />
               Kaštanová 489/34, 620 00 Brno
               <br />

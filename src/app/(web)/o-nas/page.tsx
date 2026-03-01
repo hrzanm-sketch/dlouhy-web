@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "O společnosti",
   description:
-    "Dlouhý Technology s.r.o. — výhradní distributor SAMSON pro ČR a SK. Více než 30 let zkušeností v regulační technice.",
+    "Dlouhy Technology s.r.o. — výhradní distributor SAMSON pro ČR a SK. Více než 30 let zkušeností v regulační technice.",
 }
 
 const VALUES = [
@@ -53,7 +53,7 @@ const OFFICES = [
   {
     city: "Praha",
     role: "Sídlo společnosti",
-    address: "Dlouhý Technology s.r.o., Praha, Česká republika",
+    address: "Dlouhy Technology s.r.o., Praha, Česká republika",
     type: "hq" as const,
   },
   {
@@ -84,7 +84,7 @@ export default function ONasPage() {
         </h2>
         <div className="mt-4 space-y-4 text-neutral-600 leading-relaxed">
           <p>
-            Společnost Dlouhý Technology byla založena v roce 1993. Více než 30
+            Společnost Dlouhy Technology byla založena v roce 1993. Více než 30
             let poskytujeme služby v oblasti regulační techniky pro průmyslové
             procesy.
           </p>

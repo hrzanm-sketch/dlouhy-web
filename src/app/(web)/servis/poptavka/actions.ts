@@ -47,7 +47,7 @@ export async function submitServiceRequest(data: unknown) {
 
     await sendEmail({
       to: parsed.data.contactEmail,
-      subject: "Potvrzení servisního požadavku — Dlouhý Technology",
+      subject: "Potvrzení servisního požadavku — Dlouhy Technology",
       react: ServiceConfirmation({
         contactName: parsed.data.contactName,
         urgency: templateUrgency,

@@ -43,7 +43,7 @@ export async function submitClaim(data: unknown) {
 
     await sendEmail({
       to: parsed.data.contactEmail,
-      subject: "Potvrzení reklamace — Dlouhý Technology",
+      subject: "Potvrzení reklamace — Dlouhy Technology",
       react: ClaimConfirmation({
         contactName: parsed.data.contactName,
         desiredResolution: parsed.data.desiredResolution,

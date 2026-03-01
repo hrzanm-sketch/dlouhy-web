@@ -26,7 +26,7 @@ export const Downloads: CollectionConfig = {
         { label: "SCHROEDAHL", value: "SCHROEDAHL" },
         { label: "CIRCOR", value: "CIRCOR" },
         { label: "ELCO", value: "ELCO" },
-        { label: "Dlouhý Technology", value: "DT" },
+        { label: "Dlouhy Technology", value: "DT" },
       ],
     },
     { name: "file", type: "upload", relationTo: "media", required: true },

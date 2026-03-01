@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
     await sendEmail({
       to: parsed.data.email,
-      subject: "Potvrzení zprávy — Dlouhý Technology",
+      subject: "Potvrzení zprávy — Dlouhy Technology",
       react: ContactConfirmation({
         name: parsed.data.name,
       }),

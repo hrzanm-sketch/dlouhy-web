@@ -5,8 +5,8 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: {
-    default: "Dlouhý Technology — Regulační ventily, hořáky, servis",
-    template: "%s | Dlouhý Technology",
+    default: "Dlouhy Technology — Regulační ventily, hořáky, servis",
+    template: "%s | Dlouhy Technology",
   },
   description:
     "Výhradní distributor SAMSON pro ČR a SK. Regulační ventily, recirkulační ventily SCHROEDAHL/CIRCOR, hořáky ELCO. Servis, náhradní díly, poradenství.",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "cs_CZ",
-    siteName: "Dlouhý Technology",
+    siteName: "Dlouhy Technology",
   },
 }
 

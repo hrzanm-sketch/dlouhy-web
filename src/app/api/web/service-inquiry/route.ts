@@ -49,7 +49,7 @@ export async function POST(request: Request) {
 
     await sendEmail({
       to: parsed.data.contactEmail,
-      subject: "Potvrzení servisního požadavku — Dlouhý Technology",
+      subject: "Potvrzení servisního požadavku — Dlouhy Technology",
       react: ServiceConfirmation({
         contactName: parsed.data.contactName,
         urgency: templateUrgency,

@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Zásady ochrany osobních údajů",
   description:
-    "Informace o zpracování osobních údajů společností Dlouhý Technology s.r.o. dle nařízení GDPR.",
+    "Informace o zpracování osobních údajů společností Dlouhy Technology s.r.o. dle nařízení GDPR.",
 }
 
 export default function GdprPage() {

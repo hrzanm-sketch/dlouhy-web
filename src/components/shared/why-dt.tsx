@@ -26,7 +26,7 @@ export function WhyDT() {
     <section className="bg-dt-blue-dark py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-          Proč Dlouhý Technology
+          Proč DLOUHY TECHNOLOGY
         </h2>
         <div className="mt-12 grid grid-cols-2 gap-8 lg:grid-cols-4">
           {STATS.map((stat, idx) => (

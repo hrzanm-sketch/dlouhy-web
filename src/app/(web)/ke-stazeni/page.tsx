@@ -26,7 +26,7 @@ const MANUFACTURERS = [
   { value: "SCHROEDAHL", label: "SCHROEDAHL" },
   { value: "CIRCOR", label: "CIRCOR" },
   { value: "ELCO", label: "ELCO" },
-  { value: "DT", label: "Dlouhý Technology" },
+  { value: "DT", label: "Dlouhy Technology" },
 ] as const
 
 async function getDownloads(category?: string, manufacturer?: string) {

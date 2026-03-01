@@ -34,7 +34,7 @@ export function ContactConfirmation({
           <Hr style={hr} />
           <Section>
             <Text style={footer}>
-              <strong>Dlouhý Technology s.r.o.</strong>
+              <strong>Dlouhy Technology s.r.o.</strong>
               <br />
               Kaštanová 489/34, 620 00 Brno
               <br />

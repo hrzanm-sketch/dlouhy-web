@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Obchodní podmínky",
   description:
-    "Obchodní podmínky společnosti Dlouhý Technology s.r.o. pro dodávky regulační techniky a servisních služeb.",
+    "Obchodní podmínky společnosti Dlouhy Technology s.r.o. pro dodávky regulační techniky a servisních služeb.",
 }
 
 export default function PodminkyPage() {

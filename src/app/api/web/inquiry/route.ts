@@ -47,7 +47,7 @@ export async function POST(request: Request) {
 
     await sendEmail({
       to: parsed.data.contactEmail,
-      subject: "Potvrzení poptávky — Dlouhý Technology",
+      subject: "Potvrzení poptávky — Dlouhy Technology",
       react: InquiryConfirmation({
         contactName: parsed.data.contactName,
         subject: parsed.data.subject,

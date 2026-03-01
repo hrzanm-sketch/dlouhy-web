@@ -56,7 +56,7 @@ export async function POST(req: Request) {
 
   await sendEmail({
     to: email,
-    subject: "Pozvánka do zákaznického portálu Dlouhý Technology",
+    subject: "Pozvánka do zákaznického portálu Dlouhy Technology",
     react: PortalInvite({
       firstName,
       companyName: companyName || "Vaše společnost",
