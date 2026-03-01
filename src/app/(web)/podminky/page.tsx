@@ -25,11 +25,12 @@ export default function PodminkyPage() {
           <div className="mt-3 space-y-3">
             <p>
               Tyto všeobecné obchodní podmínky (dále jen &bdquo;VOP&ldquo;)
-              upravují smluvní vztahy mezi společností Dlouhý Technology s.r.o.,
-              se sídlem Kaštanová 489/34, 620 00 Brno, IČO: 29364311,
-              DIČ: CZ29364311, zapsanou v obchodním rejstříku vedeném Krajským
-              soudem v Brně (dále jen &bdquo;dodavatel&ldquo;), a jejími
-              zákazníky (dále jen &bdquo;odběratel&ldquo;).
+              upravují smluvní vztahy mezi společností DLOUHY TECHNOLOGY s.r.o.,
+              se sídlem Jinonická 759/24, 150 00 Praha 5, IČO: 28498712,
+              DIČ: CZ28498712, zapsanou v obchodním rejstříku vedeném Městským
+              soudem v Praze, oddíl C, vložka 146026 (dále jen
+              &bdquo;dodavatel&ldquo;), a jejími zákazníky (dále jen
+              &bdquo;odběratel&ldquo;).
             </p>
             <p>
               VOP se vztahují na veškeré dodávky zboží a poskytování služeb

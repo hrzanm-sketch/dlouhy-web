@@ -21,10 +21,11 @@ export default function GdprPage() {
           </h2>
           <div className="mt-3 space-y-3">
             <p>
-              Správcem osobních údajů je společnost Dlouhý Technology s.r.o.,
-              se sídlem Kaštanová 489/34, 620 00 Brno, IČO: 29364311,
-              DIČ: CZ29364311, zapsaná v obchodním rejstříku vedeném Krajským
-              soudem v Brně (dále jen &bdquo;správce&ldquo;).
+              Správcem osobních údajů je společnost DLOUHY TECHNOLOGY s.r.o.,
+              se sídlem Jinonická 759/24, 150 00 Praha 5, IČO: 28498712,
+              DIČ: CZ28498712, zapsaná v obchodním rejstříku vedeném Městským
+              soudem v Praze, oddíl C, vložka 146026 (dále jen
+              &bdquo;správce&ldquo;).
             </p>
           </div>
         </section>
@@ -159,7 +160,7 @@ export default function GdprPage() {
                 </a>
               </li>
               <li>
-                Poštou: Dlouhý Technology s.r.o., Kaštanová 489/34, 620 00 Brno
+                Poštou: DLOUHY TECHNOLOGY s.r.o., Jinonická 759/24, 150 00 Praha 5
               </li>
             </ul>
             <p>
