@@ -10,7 +10,7 @@ export function Hero() {
           <span className="mb-4 block text-sm uppercase tracking-widest text-white/60">
             Autorizovaný distributor SAMSON
           </span>
-          <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold uppercase leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
             Regulační ventily,
             <br className="hidden sm:block" />
             hořáky a průmyslový servis
