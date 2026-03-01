@@ -38,7 +38,7 @@ export function Header() {
           </Link>
           <Link
             href="/poptavka"
-            className="rounded-md bg-dt-blue px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-dt-blue-light"
+            className="rounded-md bg-cta px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-cta-hover"
           >
             Poptávka
           </Link>
@@ -140,7 +140,7 @@ export function Header() {
           <Link
             href="/poptavka"
             onClick={() => setMobileOpen(false)}
-            className="mt-2 block rounded-md bg-dt-blue px-3 py-2 text-center text-base font-medium text-white transition-colors hover:bg-dt-blue-light"
+            className="mt-2 block rounded-md bg-cta px-3 py-2 text-center text-base font-medium text-white transition-colors hover:bg-cta-hover"
           >
             Poptávka
           </Link>
