@@ -29,7 +29,9 @@ export function NavItems({
             onClick={onClick}
             className={cn(
               "text-sm font-medium transition-colors",
-              isActive ? "text-dt-blue" : "text-neutral-600 hover:text-dt-blue",
+              isActive
+                ? "text-dt-blue border-b-2 border-dt-blue pb-0.5"
+                : "text-neutral-600 hover:text-dt-blue",
               itemClassName
             )}
           >

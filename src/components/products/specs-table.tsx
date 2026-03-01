@@ -24,9 +24,9 @@ export function SpecsTable({
           </thead>
           <tbody className="divide-y divide-neutral-200">
             {parameters.map((param, idx) => (
-              <tr key={idx} className="hover:bg-neutral-50">
+              <tr key={idx} className="even:bg-neutral-50 hover:bg-neutral-100">
                 <td className="px-4 py-3 text-neutral-700">{param.name}</td>
-                <td className="px-4 py-3 text-neutral-900">
+                <td className="px-4 py-3 font-medium text-neutral-900">
                   {param.value}
                   {param.unit && (
                     <span className="ml-1 text-neutral-500">{param.unit}</span>

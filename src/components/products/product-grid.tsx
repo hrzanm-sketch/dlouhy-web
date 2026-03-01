@@ -1,4 +1,7 @@
+"use client"
+
 import { ProductCard, type ProductCardData } from "@/components/products/product-card"
+import { AnimateSection } from "@/components/shared/animate-section"
 
 export function ProductGrid({ products }: { products: ProductCardData[] }) {
   if (products.length === 0) {
@@ -14,8 +17,10 @@ export function ProductGrid({ products }: { products: ProductCardData[] }) {
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+      {products.map((product, idx) => (
+        <AnimateSection key={product.id} delay={idx * 80}>
+          <ProductCard product={product} />
+        </AnimateSection>
       ))}
     </div>
   )
