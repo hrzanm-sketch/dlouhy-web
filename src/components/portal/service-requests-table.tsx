@@ -5,43 +5,49 @@ export interface ServiceRequest {
   id: string
   requestNumber: string
   date: string
-  type: "inspection" | "repair" | "calibration" | "installation"
-  urgency: "normal" | "urgent" | "critical"
-  status: "new" | "in_progress" | "waiting_parts" | "completed" | "cancelled"
+  type: string
+  urgency: string
+  status: string
   description: string
 }
 
-const STATUS_LABELS: Record<ServiceRequest["status"], string> = {
+const STATUS_LABELS: Record<string, string> = {
   new: "Novy",
+  assigned: "Prirazen",
   in_progress: "V realizaci",
   waiting_parts: "Ceka na dily",
   completed: "Dokonceno",
   cancelled: "Zruseno",
 }
 
-const STATUS_COLORS: Record<ServiceRequest["status"], string> = {
+const STATUS_COLORS: Record<string, string> = {
   new: "bg-blue-100 text-blue-800",
+  assigned: "bg-indigo-100 text-indigo-800",
   in_progress: "bg-yellow-100 text-yellow-800",
   waiting_parts: "bg-orange-100 text-orange-800",
   completed: "bg-green-100 text-green-800",
   cancelled: "bg-neutral-100 text-neutral-800",
 }
 
-const TYPE_LABELS: Record<ServiceRequest["type"], string> = {
+const TYPE_LABELS: Record<string, string> = {
   inspection: "Inspekce",
   repair: "Oprava",
   calibration: "Kalibrace",
   installation: "Instalace",
 }
 
-const URGENCY_LABELS: Record<ServiceRequest["urgency"], string> = {
+const URGENCY_LABELS: Record<string, string> = {
   normal: "Normalni",
+  low: "Nizka",
+  high: "Vysoka",
   urgent: "Nahle",
   critical: "Kriticka",
 }
 
-const URGENCY_COLORS: Record<ServiceRequest["urgency"], string> = {
+const URGENCY_COLORS: Record<string, string> = {
   normal: "text-neutral-600",
+  low: "text-neutral-500",
+  high: "text-orange-600",
   urgent: "text-orange-600",
   critical: "text-red-600 font-semibold",
 }

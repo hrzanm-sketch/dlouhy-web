@@ -4,78 +4,28 @@ import { StatusFilter } from "@/components/portal/status-filter"
 import { Pagination } from "@/components/ui/pagination"
 import { cn, formatDate } from "@/lib/utils"
 import { getPortalSession } from "@/lib/portal/get-session"
+import { getDocuments } from "@/lib/portal/queries"
 
 export const metadata: Metadata = {
   title: "Dokumenty",
 }
 
-type PortalDocument = {
-  id: string
-  name: string
-  type: "certificate" | "protocol" | "manual" | "report" | "invoice"
-  date: string
-  size: string
-  relatedTo: string
-}
-
-// TODO: replace with real query
-const MOCK_DOCUMENTS: PortalDocument[] = [
-  {
-    id: "1",
-    name: "Kalibracni protokol — Pozicioner 3730-2",
-    type: "protocol",
-    date: "2026-02-10",
-    size: "1.2 MB",
-    relatedTo: "SRV-2026-0009",
-  },
-  {
-    id: "2",
-    name: "Certifikat materialu — SAMSON 3241",
-    type: "certificate",
-    date: "2026-02-15",
-    size: "0.8 MB",
-    relatedTo: "OBJ-2026-0042",
-  },
-  {
-    id: "3",
-    name: "Navod k obsluze — SAMSON Type 3351",
-    type: "manual",
-    date: "2025-12-01",
-    size: "4.5 MB",
-    relatedTo: "OBJ-2025-0198",
-  },
-  {
-    id: "4",
-    name: "Servisni zprava — rocni kontrola SCHROEDAHL",
-    type: "report",
-    date: "2026-01-15",
-    size: "2.1 MB",
-    relatedTo: "SRV-2026-0007",
-  },
-  {
-    id: "5",
-    name: "Faktura FA-2026-0042",
-    type: "invoice",
-    date: "2026-02-20",
-    size: "0.3 MB",
-    relatedTo: "OBJ-2026-0042",
-  },
-]
-
-const TYPE_LABELS: Record<PortalDocument["type"], string> = {
+const CATEGORY_LABELS: Record<string, string> = {
   certificate: "Certifikat",
   protocol: "Protokol",
   manual: "Navod",
   report: "Zprava",
-  invoice: "Faktura",
+  catalog: "Katalog",
+  datasheet: "Datasheet",
 }
 
-const TYPE_COLORS: Record<PortalDocument["type"], string> = {
+const CATEGORY_COLORS: Record<string, string> = {
   certificate: "bg-green-100 text-green-800",
   protocol: "bg-blue-100 text-blue-800",
   manual: "bg-purple-100 text-purple-800",
   report: "bg-yellow-100 text-yellow-800",
-  invoice: "bg-neutral-100 text-neutral-800",
+  catalog: "bg-neutral-100 text-neutral-800",
+  datasheet: "bg-neutral-100 text-neutral-800",
 }
 
 const TYPE_OPTIONS = [
@@ -84,23 +34,32 @@ const TYPE_OPTIONS = [
   { value: "protocol", label: "Protokoly" },
   { value: "manual", label: "Navody" },
   { value: "report", label: "Zpravy" },
-  { value: "invoice", label: "Faktury" },
+  { value: "catalog", label: "Katalogy" },
+  { value: "datasheet", label: "Datasheety" },
 ]
+
+function formatFileSize(bytes: number | null): string {
+  if (!bytes) return ""
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
 
 export default async function DocumentsPage({
   searchParams,
 }: {
   searchParams: Promise<{ type?: string; page?: string }>
 }) {
-  await getPortalSession()
+  const session = await getPortalSession()
   const params = await searchParams
   const typeFilter = params.type || ""
   const currentPage = Number(params.page) || 1
   const perPage = 10
 
+  const allDocuments = await getDocuments(session.companyId)
   const filtered = typeFilter
-    ? MOCK_DOCUMENTS.filter((d) => d.type === typeFilter)
-    : MOCK_DOCUMENTS
+    ? allDocuments.filter((d) => d.category === typeFilter)
+    : allDocuments
 
   const totalPages = Math.ceil(filtered.length / perPage)
   const documents = filtered.slice((currentPage - 1) * perPage, currentPage * perPage)
@@ -122,29 +81,34 @@ export default async function DocumentsPage({
               <thead>
                 <tr className="border-b border-neutral-200 text-neutral-500">
                   <th className="py-3 pr-4 font-medium">Nazev</th>
-                  <th className="py-3 pr-4 font-medium">Typ</th>
-                  <th className="py-3 pr-4 font-medium">Datum</th>
-                  <th className="py-3 pr-4 font-medium">Velikost</th>
-                  <th className="py-3 font-medium">Souvisejici</th>
+                  <th className="py-3 pr-4 font-medium">Kategorie</th>
+                  <th className="py-3 pr-4 font-medium">Vyrobce</th>
+                  <th className="py-3 font-medium">Velikost</th>
                 </tr>
               </thead>
               <tbody>
                 {documents.map((doc) => (
                   <tr key={doc.id} className="border-b border-neutral-100 transition-colors hover:bg-neutral-50">
                     <td className="py-3 pr-4">
-                      {/* TODO: link to actual file download */}
-                      <button type="button" className="font-medium text-dt-blue hover:underline">
+                      <a
+                        href={doc.fileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-dt-blue hover:underline"
+                      >
                         {doc.name}
-                      </button>
+                      </a>
+                      {doc.description && (
+                        <p className="mt-0.5 text-xs text-neutral-500">{doc.description}</p>
+                      )}
                     </td>
                     <td className="py-3 pr-4">
-                      <span className={cn("inline-block rounded-full px-2.5 py-0.5 text-xs font-medium", TYPE_COLORS[doc.type])}>
-                        {TYPE_LABELS[doc.type]}
+                      <span className={cn("inline-block rounded-full px-2.5 py-0.5 text-xs font-medium", CATEGORY_COLORS[doc.category] || "bg-neutral-100 text-neutral-800")}>
+                        {CATEGORY_LABELS[doc.category] || doc.category}
                       </span>
                     </td>
-                    <td className="py-3 pr-4 text-neutral-600">{formatDate(doc.date)}</td>
-                    <td className="py-3 pr-4 text-neutral-600">{doc.size}</td>
-                    <td className="py-3 text-neutral-600">{doc.relatedTo}</td>
+                    <td className="py-3 pr-4 text-neutral-600">{doc.manufacturer}</td>
+                    <td className="py-3 text-neutral-600">{formatFileSize(doc.fileSize)}</td>
                   </tr>
                 ))}
               </tbody>

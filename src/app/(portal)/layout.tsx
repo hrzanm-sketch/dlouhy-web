@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth"
 import { PortalSidebar } from "@/components/portal/sidebar"
+import { getCompanyInfo } from "@/lib/portal/queries"
 
 export const metadata = {
   title: {
@@ -20,8 +21,8 @@ export default async function PortalLayout({
     return <>{children}</>
   }
 
-  // TODO: Fetch company name from intranet DB by companyId
-  const companyName = "Demo Firma s.r.o."
+  const company = await getCompanyInfo(session.user.companyId)
+  const companyName = company?.name ?? "Portal"
   const userName = `${session.user.firstName} ${session.user.lastName}`
 
   return (

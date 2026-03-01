@@ -6,20 +6,26 @@ export interface Invoice {
   invoiceNumber: string
   date: string
   dueDate: string
-  status: "unpaid" | "paid" | "overdue"
+  status: string
   amount: number
 }
 
-const STATUS_LABELS: Record<Invoice["status"], string> = {
-  unpaid: "Neuhrazeno",
-  paid: "Uhrazeno",
+const STATUS_LABELS: Record<string, string> = {
+  draft: "Koncept",
+  sent: "Neuhrazeno",
   overdue: "Po splatnosti",
+  paid: "Uhrazeno",
+  cancelled: "Storno",
+  unpaid: "Neuhrazeno",
 }
 
-const STATUS_COLORS: Record<Invoice["status"], string> = {
-  unpaid: "bg-yellow-100 text-yellow-800",
-  paid: "bg-green-100 text-green-800",
+const STATUS_COLORS: Record<string, string> = {
+  draft: "bg-neutral-100 text-neutral-800",
+  sent: "bg-yellow-100 text-yellow-800",
   overdue: "bg-red-100 text-red-800",
+  paid: "bg-green-100 text-green-800",
+  cancelled: "bg-neutral-100 text-neutral-600",
+  unpaid: "bg-yellow-100 text-yellow-800",
 }
 
 export function InvoicesTable({ invoices }: { invoices: Invoice[] }) {

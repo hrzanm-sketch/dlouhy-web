@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server"
 import { serviceUpdateWebhookSchema } from "@/lib/validations/webhooks"
 import { createNotification } from "@/lib/portal/notifications"
+import { sendEmail } from "@/lib/email/send"
+import { ServiceUpdateNotification } from "@/lib/email/templates/service-update-notification"
+import { getPortalUsersForEmail } from "@/lib/portal/get-email-recipients"
 
 const STATUS_LABELS: Record<string, string> = {
   new: "Novy",
@@ -33,6 +36,20 @@ export async function POST(req: Request) {
     relatedId: data.serviceRequestId,
     relatedUrl: `/portal/servis/${data.serviceRequestId}`,
   })
+
+  // Send email to all active portal users with email notifications enabled
+  const recipients = await getPortalUsersForEmail(data.companyId, "service_update")
+  for (const recipient of recipients) {
+    await sendEmail({
+      to: recipient.email,
+      subject: `Servis ${data.requestNumber} — ${statusLabel}`,
+      react: ServiceUpdateNotification({
+        requestNumber: data.requestNumber,
+        status: statusLabel,
+        description: data.description,
+      }),
+    })
+  }
 
   console.log(`[Webhook] Service update: ${data.requestNumber} → ${data.status}`)
 

@@ -3,6 +3,9 @@ import Link from "next/link"
 import { db } from "@/lib/db"
 import { portalUsers } from "@/lib/db/schema"
 import { eq } from "drizzle-orm"
+import { sendEmail } from "@/lib/email/send"
+import { PasswordResetEmail } from "@/lib/email/templates/password-reset"
+import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
   title: "Obnova hesla",
@@ -21,8 +24,8 @@ async function requestReset(formData: FormData) {
     .limit(1)
 
   if (!user) {
-    // Don't reveal whether the email exists
-    return
+    // Don't reveal whether the email exists — still redirect to success
+    redirect("/portal/reset-hesla?sent=true")
   }
 
   const token = crypto.randomUUID()
@@ -37,47 +40,74 @@ async function requestReset(formData: FormData) {
     })
     .where(eq(portalUsers.id, user.id))
 
-  console.log(`[Password Reset] Token for ${email}: ${token}`)
+  const baseUrl = process.env.AUTH_URL || "https://dlouhy-technology.cz"
+  const resetUrl = `${baseUrl}/portal/reset-hesla/${token}`
+
+  await sendEmail({
+    to: user.email,
+    subject: "Obnova hesla — Dlouhy Technology",
+    react: PasswordResetEmail({
+      resetUrl,
+      firstName: user.firstName,
+    }),
+  })
+
+  redirect("/portal/reset-hesla?sent=true")
 }
 
-export default function ResetPasswordPage() {
+export default async function ResetPasswordPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ sent?: string }>
+}) {
+  const params = await searchParams
+  const sent = params.sent === "true"
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-neutral-50 px-4">
       <div className="w-full max-w-sm">
         <div className="rounded-lg border border-neutral-200 bg-white p-8 shadow-sm">
           <div className="mb-6 text-center">
             <h1 className="text-xl font-bold text-dt-blue">Obnova hesla</h1>
-            <p className="mt-2 text-sm text-neutral-500">
-              Zadejte svuj email a my vam posleme odkaz pro obnovu hesla.
-            </p>
+            {sent ? (
+              <p className="mt-2 text-sm text-green-700">
+                Pokud existuje ucet s timto emailem, poslali jsme Vam odkaz pro obnovu hesla. Zkontrolujte svou schranku.
+              </p>
+            ) : (
+              <p className="mt-2 text-sm text-neutral-500">
+                Zadejte svuj email a my vam posleme odkaz pro obnovu hesla.
+              </p>
+            )}
           </div>
 
-          <form action={requestReset} className="space-y-4">
-            <div>
-              <label
-                htmlFor="email"
-                className="mb-1 block text-sm font-medium text-neutral-700"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                className="block w-full rounded-md border border-neutral-300 px-3 py-2 text-sm shadow-sm focus:border-dt-blue focus:ring-1 focus:ring-dt-blue focus:outline-none"
-                placeholder="vas@email.cz"
-              />
-            </div>
+          {!sent && (
+            <form action={requestReset} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="email"
+                  className="mb-1 block text-sm font-medium text-neutral-700"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className="block w-full rounded-md border border-neutral-300 px-3 py-2 text-sm shadow-sm focus:border-dt-blue focus:ring-1 focus:ring-dt-blue focus:outline-none"
+                  placeholder="vas@email.cz"
+                />
+              </div>
 
-            <button
-              type="submit"
-              className="w-full rounded-md bg-dt-blue px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-dt-blue-light focus:ring-2 focus:ring-dt-blue focus:ring-offset-2 focus:outline-none"
-            >
-              Odeslat odkaz
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="w-full rounded-md bg-dt-blue px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-dt-blue-light focus:ring-2 focus:ring-dt-blue focus:ring-offset-2 focus:outline-none"
+              >
+                Odeslat odkaz
+              </button>
+            </form>
+          )}
 
           <div className="mt-4 text-center">
             <Link

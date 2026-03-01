@@ -6,28 +6,34 @@ export interface Claim {
   claimNumber: string
   date: string
   product: string
-  desiredResolution: "repair" | "replacement" | "refund" | "discount"
-  status: "new" | "investigating" | "approved" | "rejected" | "resolved"
+  desiredResolution: string
+  status: string
   description: string
 }
 
-const STATUS_LABELS: Record<Claim["status"], string> = {
+const STATUS_LABELS: Record<string, string> = {
+  received: "Prijato",
+  evaluating: "V setreni",
+  sent_to_supplier: "U dodavatele",
+  resolved: "Vyreseno",
+  rejected: "Zamitnuto",
   new: "Nova",
   investigating: "V setreni",
   approved: "Schvaleno",
-  rejected: "Zamitnuto",
-  resolved: "Vyreseno",
 }
 
-const STATUS_COLORS: Record<Claim["status"], string> = {
+const STATUS_COLORS: Record<string, string> = {
+  received: "bg-blue-100 text-blue-800",
+  evaluating: "bg-yellow-100 text-yellow-800",
+  sent_to_supplier: "bg-purple-100 text-purple-800",
+  resolved: "bg-green-100 text-green-800",
+  rejected: "bg-red-100 text-red-800",
   new: "bg-blue-100 text-blue-800",
   investigating: "bg-yellow-100 text-yellow-800",
   approved: "bg-green-100 text-green-800",
-  rejected: "bg-red-100 text-red-800",
-  resolved: "bg-neutral-100 text-neutral-800",
 }
 
-const RESOLUTION_LABELS: Record<Claim["desiredResolution"], string> = {
+const RESOLUTION_LABELS: Record<string, string> = {
   repair: "Oprava",
   replacement: "Vymena",
   refund: "Vraceni penez",

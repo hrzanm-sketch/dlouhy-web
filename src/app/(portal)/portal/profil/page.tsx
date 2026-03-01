@@ -1,6 +1,10 @@
 import { getPortalSession } from "@/lib/portal/get-session"
+import { getCompanyInfo } from "@/lib/portal/queries"
 import { ProfileForm } from "./profile-form"
 import Link from "next/link"
+import { db } from "@/lib/db"
+import { portalUsers } from "@/lib/db/schema"
+import { eq } from "drizzle-orm"
 
 export const metadata = {
   title: "Profil",
@@ -8,13 +12,19 @@ export const metadata = {
 
 export default async function ProfilPage() {
   const session = await getPortalSession()
+  const company = await getCompanyInfo(session.companyId)
 
-  // TODO: Fetch company info from intranet DB by companyId
-  const companyInfo = {
-    name: "Demo Firma s.r.o.",
-    ico: "12345678",
-    address: "Prumyslova 42, 110 00 Praha 1",
-  }
+  // Fetch full user data for phone and jobTitle
+  const [user] = await db
+    .select({
+      phone: portalUsers.phone,
+      jobTitle: portalUsers.jobTitle,
+    })
+    .from(portalUsers)
+    .where(eq(portalUsers.id, session.userId))
+    .limit(1)
+
+  const billingAddress = company?.addresses?.find((a) => a.type === "billing")
 
   return (
     <div className="mx-auto max-w-2xl space-y-8">
@@ -29,21 +39,33 @@ export default async function ProfilPage() {
           <div>
             <dt className="text-sm text-neutral-500">Nazev firmy</dt>
             <dd className="text-sm font-medium text-neutral-900">
-              {companyInfo.name}
+              {company?.name ?? "—"}
             </dd>
           </div>
-          <div>
-            <dt className="text-sm text-neutral-500">ICO</dt>
-            <dd className="text-sm font-medium text-neutral-900">
-              {companyInfo.ico}
-            </dd>
-          </div>
-          <div>
-            <dt className="text-sm text-neutral-500">Adresa</dt>
-            <dd className="text-sm font-medium text-neutral-900">
-              {companyInfo.address}
-            </dd>
-          </div>
+          {company?.ico && (
+            <div>
+              <dt className="text-sm text-neutral-500">ICO</dt>
+              <dd className="text-sm font-medium text-neutral-900">
+                {company.ico}
+              </dd>
+            </div>
+          )}
+          {company?.dic && (
+            <div>
+              <dt className="text-sm text-neutral-500">DIC</dt>
+              <dd className="text-sm font-medium text-neutral-900">
+                {company.dic}
+              </dd>
+            </div>
+          )}
+          {billingAddress && (
+            <div>
+              <dt className="text-sm text-neutral-500">Adresa</dt>
+              <dd className="text-sm font-medium text-neutral-900">
+                {billingAddress.street}, {billingAddress.zip} {billingAddress.city}
+              </dd>
+            </div>
+          )}
         </dl>
       </section>
 
@@ -57,8 +79,8 @@ export default async function ProfilPage() {
             firstName: session.firstName,
             lastName: session.lastName,
             email: session.email,
-            phone: "",
-            jobTitle: "",
+            phone: user?.phone ?? "",
+            jobTitle: user?.jobTitle ?? "",
           }}
         />
       </section>

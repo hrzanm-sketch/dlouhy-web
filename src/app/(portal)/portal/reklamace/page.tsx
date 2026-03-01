@@ -1,53 +1,23 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import Link from "next/link"
-import { ClaimsTable, type Claim } from "@/components/portal/claims-table"
+import { ClaimsTable } from "@/components/portal/claims-table"
 import { StatusFilter } from "@/components/portal/status-filter"
 import { Pagination } from "@/components/ui/pagination"
 import { getPortalSession } from "@/lib/portal/get-session"
+import { getClaims } from "@/lib/portal/queries"
 
 export const metadata: Metadata = {
   title: "Reklamace",
 }
 
-// TODO: replace with real queries from intranet DB
-const MOCK_CLAIMS: Claim[] = [
-  {
-    id: "1",
-    claimNumber: "REC-2026-0003",
-    date: "2026-02-10",
-    product: "SAMSON Type 3241 DN80",
-    desiredResolution: "repair",
-    status: "investigating",
-    description: "Ventil nevykazuje spravnou regulaci — odchylka od nastavene hodnoty >5%",
-  },
-  {
-    id: "2",
-    claimNumber: "REC-2025-0018",
-    date: "2025-11-20",
-    product: "Pozicioner SAMSON 3730-3",
-    desiredResolution: "replacement",
-    status: "resolved",
-    description: "Vadny display pozicioneru — nezobrazuje aktualni pozici",
-  },
-  {
-    id: "3",
-    claimNumber: "REC-2025-0015",
-    date: "2025-10-05",
-    product: "SCHROEDAHL TDM",
-    desiredResolution: "discount",
-    status: "resolved",
-    description: "Dodany ventil s kosmitickym poskozenim — skrabance na tele ventilu",
-  },
-]
-
 const STATUS_OPTIONS = [
   { value: "", label: "Vse" },
-  { value: "new", label: "Nova" },
-  { value: "investigating", label: "V setreni" },
-  { value: "approved", label: "Schvaleno" },
-  { value: "rejected", label: "Zamitnuto" },
+  { value: "received", label: "Prijato" },
+  { value: "evaluating", label: "V setreni" },
+  { value: "sent_to_supplier", label: "U dodavatele" },
   { value: "resolved", label: "Vyreseno" },
+  { value: "rejected", label: "Zamitnuto" },
 ]
 
 export default async function ClaimsPage({
@@ -55,18 +25,15 @@ export default async function ClaimsPage({
 }: {
   searchParams: Promise<{ status?: string; page?: string }>
 }) {
-  await getPortalSession()
+  const session = await getPortalSession()
   const params = await searchParams
   const statusFilter = params.status || ""
   const currentPage = Number(params.page) || 1
   const perPage = 10
 
-  const filtered = statusFilter
-    ? MOCK_CLAIMS.filter((c) => c.status === statusFilter)
-    : MOCK_CLAIMS
-
-  const totalPages = Math.ceil(filtered.length / perPage)
-  const claims = filtered.slice((currentPage - 1) * perPage, currentPage * perPage)
+  const allClaims = await getClaims(session.companyId, statusFilter || undefined)
+  const totalPages = Math.ceil(allClaims.length / perPage)
+  const claims = allClaims.slice((currentPage - 1) * perPage, currentPage * perPage)
 
   return (
     <div className="space-y-6">
@@ -85,7 +52,15 @@ export default async function ClaimsPage({
       </Suspense>
 
       <div className="rounded-lg border border-neutral-200 bg-white p-4">
-        <ClaimsTable claims={claims} />
+        <ClaimsTable claims={claims.map((c) => ({
+          id: c.id,
+          claimNumber: c.id.substring(0, 8),
+          date: c.createdAt,
+          product: c.title,
+          desiredResolution: "repair",
+          status: c.status,
+          description: c.description || c.title,
+        }))} />
       </div>
 
       <Suspense fallback={null}>

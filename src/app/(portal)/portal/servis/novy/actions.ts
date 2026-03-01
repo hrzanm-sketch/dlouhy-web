@@ -1,6 +1,8 @@
 "use server"
 
 import { getPortalSession } from "@/lib/portal/get-session"
+import { createServiceRequest } from "@/lib/intranet-client"
+import { createNotification } from "@/lib/portal/notifications"
 
 type ActionResult = {
   success: boolean
@@ -25,21 +27,27 @@ export async function submitServiceRequest(formData: FormData): Promise<ActionRe
     return { success: false, error: "Popis musi mit alespon 10 znaku." }
   }
 
-  // TODO: Call intranet API to create service request
-  // const result = await createServiceRequest({
-  //   companyId: session.companyId,
-  //   type, urgency, product, location, preferredDate, description,
-  //   createdBy: session.userId,
-  // })
+  try {
+    await createServiceRequest({
+      companyId: session.companyId,
+      contactName: `${session.firstName} ${session.lastName}`,
+      email: session.email,
+      product: product.trim(),
+      description: `[${type}/${urgency}] ${description.trim()}${location ? ` | Lokace: ${location}` : ""}${preferredDate ? ` | Preferovany termin: ${preferredDate}` : ""}`,
+    })
 
-  console.log("[ServiceRequest] New request from", session.companyId, {
-    type,
-    urgency,
-    product,
-    location,
-    preferredDate,
-    description: description.substring(0, 100),
-  })
+    await createNotification({
+      companyId: session.companyId,
+      type: "service_request",
+      title: `Novy servisni pozadavek — ${product.trim()}`,
+      message: `Typ: ${type}, nalehavost: ${urgency}`,
+      relatedId: session.userId,
+      relatedUrl: "/portal/servis",
+    })
 
-  return { success: true }
+    return { success: true }
+  } catch (e) {
+    console.error("[ServiceRequest] Submit error:", e)
+    return { success: false, error: "Nepodarilo se odeslat pozadavek. Zkuste to prosim znovu." }
+  }
 }

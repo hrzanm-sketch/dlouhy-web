@@ -2,98 +2,57 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { KPICards } from "@/components/portal/kpi-cards"
 import { formatAmount, formatDate } from "@/lib/utils"
+import { getPortalSession } from "@/lib/portal/get-session"
+import { getDashboardData } from "@/lib/portal/queries"
 
 export const metadata: Metadata = {
   title: "Dashboard",
 }
 
-// TODO: replace with real queries from intranet DB
-const MOCK_KPI = [
-  {
-    title: "Objednavky",
-    count: 5,
-    subtitle: "2 aktivni",
-    href: "/portal/objednavky",
-  },
-  {
-    title: "Faktury",
-    count: 3,
-    subtitle: "1 po splatnosti",
-    subtitleWarning: true,
-    href: "/portal/faktury",
-  },
-  {
-    title: "Servis",
-    count: 2,
-    subtitle: "1 otevreny",
-    href: "/portal/servis",
-  },
-  {
-    title: "Reklamace",
-    count: 1,
-    href: "/portal/reklamace",
-  },
-]
-
-// TODO: replace with real queries
-const MOCK_RECENT_ORDERS = [
-  {
-    id: "1",
-    orderNumber: "OBJ-2026-0042",
-    date: "2026-02-15",
-    status: "shipped" as const,
-    amount: 1250000,
-  },
-  {
-    id: "2",
-    orderNumber: "OBJ-2026-0038",
-    date: "2026-02-01",
-    status: "completed" as const,
-    amount: 875000,
-  },
-  {
-    id: "3",
-    orderNumber: "OBJ-2026-0035",
-    date: "2026-01-20",
-    status: "completed" as const,
-    amount: 2340000,
-  },
-]
-
-// TODO: replace with real queries
-const MOCK_UNPAID_INVOICES = [
-  {
-    id: "1",
-    invoiceNumber: "FA-2026-0042",
-    dueDate: "2026-03-20",
-    status: "unpaid" as const,
-    amount: 1250000,
-  },
-  {
-    id: "3",
-    invoiceNumber: "FA-2026-0035",
-    dueDate: "2026-02-25",
-    status: "overdue" as const,
-    amount: 2340000,
-  },
-]
-
 const STATUS_LABELS: Record<string, string> = {
-  pending: "Cekajici",
+  ordered: "Objednano",
   confirmed: "Potvrzeno",
   shipped: "Odeslano",
-  completed: "Dokonceno",
+  delivered: "Dodano",
 }
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const session = await getPortalSession()
+  const data = await getDashboardData(session.companyId)
+
+  const kpiCards = [
+    {
+      title: "Objednavky",
+      count: data.ordersCount,
+      href: "/portal/objednavky",
+    },
+    {
+      title: "Faktury",
+      count: data.invoicesCount,
+      subtitle: data.unpaidInvoices.length > 0
+        ? `${data.unpaidInvoices.length} neuhrazeno`
+        : undefined,
+      subtitleWarning: data.unpaidInvoices.some((i) => i.status === "overdue"),
+      href: "/portal/faktury",
+    },
+    {
+      title: "Servis",
+      count: data.serviceCount,
+      href: "/portal/servis",
+    },
+    {
+      title: "Reklamace",
+      count: data.claimsCount,
+      href: "/portal/reklamace",
+    },
+  ]
+
   return (
     <div className="space-y-8">
       <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
 
-      {/* KPI Cards */}
-      <KPICards cards={MOCK_KPI} />
+      <KPICards cards={kpiCards} />
 
-      {/* Quick Actions */}
       <div className="flex flex-wrap gap-3">
         <Link
           href="/portal/servis/novy"
@@ -109,7 +68,6 @@ export default function DashboardPage() {
         </Link>
       </div>
 
-      {/* Recent Orders */}
       <section>
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-neutral-900">
@@ -133,7 +91,7 @@ export default function DashboardPage() {
               </tr>
             </thead>
             <tbody>
-              {MOCK_RECENT_ORDERS.map((order) => (
+              {data.recentOrders.map((order) => (
                 <tr
                   key={order.id}
                   className="border-b border-neutral-100 last:border-0"
@@ -159,12 +117,18 @@ export default function DashboardPage() {
                   </td>
                 </tr>
               ))}
+              {data.recentOrders.length === 0 && (
+                <tr>
+                  <td colSpan={4} className="px-4 py-8 text-center text-neutral-500">
+                    Zadne objednavky
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
       </section>
 
-      {/* Unpaid Invoices */}
       <section>
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-neutral-900">
@@ -178,7 +142,7 @@ export default function DashboardPage() {
           </Link>
         </div>
         <div className="space-y-3">
-          {MOCK_UNPAID_INVOICES.map((invoice) => (
+          {data.unpaidInvoices.map((invoice) => (
             <Link
               key={invoice.id}
               href={`/portal/faktury/${invoice.id}`}
@@ -204,6 +168,9 @@ export default function DashboardPage() {
               </div>
             </Link>
           ))}
+          {data.unpaidInvoices.length === 0 && (
+            <p className="text-sm text-neutral-500">Vse uhrazeno.</p>
+          )}
         </div>
       </section>
     </div>

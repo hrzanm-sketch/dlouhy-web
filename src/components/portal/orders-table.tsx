@@ -5,22 +5,28 @@ export interface Order {
   id: string
   orderNumber: string
   date: string
-  status: "pending" | "confirmed" | "shipped" | "completed"
+  status: string
   amount: number
   itemCount: number
 }
 
-const STATUS_LABELS: Record<Order["status"], string> = {
-  pending: "Cekajici",
+const STATUS_LABELS: Record<string, string> = {
+  ordered: "Objednano",
   confirmed: "Potvrzeno",
   shipped: "Odeslano",
+  delivered: "Dodano",
+  cancelled: "Zruseno",
+  pending: "Cekajici",
   completed: "Dokonceno",
 }
 
-const STATUS_COLORS: Record<Order["status"], string> = {
-  pending: "bg-yellow-100 text-yellow-800",
+const STATUS_COLORS: Record<string, string> = {
+  ordered: "bg-yellow-100 text-yellow-800",
   confirmed: "bg-blue-100 text-blue-800",
   shipped: "bg-purple-100 text-purple-800",
+  delivered: "bg-green-100 text-green-800",
+  cancelled: "bg-red-100 text-red-800",
+  pending: "bg-yellow-100 text-yellow-800",
   completed: "bg-green-100 text-green-800",
 }
 

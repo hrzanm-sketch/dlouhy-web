@@ -22,3 +22,13 @@ export {
 } from "./portal-notifications"
 export { references } from "./references"
 export { articles } from "./articles"
+
+// Intranet tables (read-only, no migrations)
+export {
+  intranetOrders,
+  intranetInvoices,
+  intranetCompanies,
+  intranetServiceRequests,
+  intranetClaims,
+} from "./intranet"
+export type { CompanyAddress, CompanyContact } from "./intranet"

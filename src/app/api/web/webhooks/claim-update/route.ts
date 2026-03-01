@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server"
 import { claimUpdateWebhookSchema } from "@/lib/validations/webhooks"
 import { createNotification } from "@/lib/portal/notifications"
+import { sendEmail } from "@/lib/email/send"
+import { ClaimUpdateNotification } from "@/lib/email/templates/claim-update-notification"
+import { getPortalUsersForEmail } from "@/lib/portal/get-email-recipients"
 
 const STATUS_LABELS: Record<string, string> = {
   new: "Nova",
@@ -33,6 +36,20 @@ export async function POST(req: Request) {
     relatedId: data.claimId,
     relatedUrl: `/portal/reklamace/${data.claimId}`,
   })
+
+  // Send email to all active portal users with email notifications enabled
+  const recipients = await getPortalUsersForEmail(data.companyId, "claim_update")
+  for (const recipient of recipients) {
+    await sendEmail({
+      to: recipient.email,
+      subject: `Reklamace ${data.claimNumber} — ${statusLabel}`,
+      react: ClaimUpdateNotification({
+        claimNumber: data.claimNumber,
+        status: statusLabel,
+        description: data.description,
+      }),
+    })
+  }
 
   console.log(`[Webhook] Claim update: ${data.claimNumber} → ${data.status}`)
 
