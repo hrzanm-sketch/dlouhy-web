@@ -1,9 +1,11 @@
 import Link from "next/link"
+import { HeroCanvas } from "@/components/shared/hero-canvas"
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[500px] items-center bg-gradient-to-br from-dt-blue-dark to-dt-blue lg:h-[70vh]">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section className="relative flex min-h-[500px] items-center overflow-hidden bg-black lg:h-[70vh]">
+      <HeroCanvas className="absolute inset-0 h-full w-full" />
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
             Regulační ventily, hořáky a průmyslový servis
