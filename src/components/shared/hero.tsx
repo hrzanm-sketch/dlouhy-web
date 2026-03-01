@@ -31,7 +31,7 @@ export function Hero() {
             </Link>
             <Link
               href="/poptavka"
-              className="inline-flex items-center justify-center rounded-md border-2 border-white px-6 py-3 text-base font-medium text-white transition-all duration-200 hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-md bg-cta px-6 py-3 text-base font-medium text-white transition-all duration-200 hover:bg-cta-hover hover:scale-[1.02]"
             >
               Poslat poptávku
             </Link>

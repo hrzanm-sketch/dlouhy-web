@@ -25,7 +25,7 @@ export function CTABlock({
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
           <Link
             href={buttonHref}
-            className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-dt-blue transition-all duration-200 hover:scale-[1.02] hover:bg-neutral-100"
+            className="inline-flex items-center justify-center rounded-md bg-cta px-6 py-3 text-base font-medium text-white transition-all duration-200 hover:scale-[1.02] hover:bg-cta-hover"
           >
             {buttonText}
           </Link>
