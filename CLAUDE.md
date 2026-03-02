@@ -478,6 +478,14 @@ export async function POST(req: Request) {
 }
 ```
 
+## Dokumentace
+
+Technická dokumentace v `docs/`:
+
+- `docs/dt-intranet-spec.md` — Technická specifikace intranetu
+- `docs/dlouhy-web-spec.md` — Technická specifikace webu + portálu
+- `docs/integrace-intranet-web.md` — Integrační specifikace (datové toky, webhooky, sdílená DB)
+
 ## Environment variables
 
 ```env
