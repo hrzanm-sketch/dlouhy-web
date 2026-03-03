@@ -29,8 +29,8 @@ async function resetPassword(formData: FormData) {
     .from(portalUsers)
     .where(
       and(
-        eq(portalUsers.inviteToken, token),
-        gt(portalUsers.inviteExpiresAt, new Date()),
+        eq(portalUsers.resetToken, token),
+        gt(portalUsers.resetExpiresAt, new Date()),
       ),
     )
     .limit(1)
@@ -45,8 +45,8 @@ async function resetPassword(formData: FormData) {
     .update(portalUsers)
     .set({
       passwordHash,
-      inviteToken: null,
-      inviteExpiresAt: null,
+      resetToken: null,
+      resetExpiresAt: null,
       updatedAt: new Date(),
     })
     .where(eq(portalUsers.id, user.id))
@@ -66,8 +66,8 @@ export default async function ResetPasswordTokenPage({
     .from(portalUsers)
     .where(
       and(
-        eq(portalUsers.inviteToken, token),
-        gt(portalUsers.inviteExpiresAt, new Date()),
+        eq(portalUsers.resetToken, token),
+        gt(portalUsers.resetExpiresAt, new Date()),
       ),
     )
     .limit(1)

@@ -4,6 +4,6 @@ import { markAllRead } from "@/lib/portal/notifications"
 
 export async function POST() {
   const session = await getPortalSession()
-  const count = await markAllRead(session.companyId)
+  const count = await markAllRead(session.companyId, session.userId)
   return NextResponse.json({ success: true, markedCount: count })
 }

@@ -9,7 +9,7 @@ import { NotificationBell } from "./notification-bell"
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/portal/dashboard", icon: "grid" },
-  { label: "Objednavky", href: "/portal/objednavky", icon: "package" },
+  { label: "Objednávky", href: "/portal/objednavky", icon: "package" },
   { label: "Faktury", href: "/portal/faktury", icon: "file-text" },
   { label: "Servis", href: "/portal/servis", icon: "wrench" },
   { label: "Reklamace", href: "/portal/reklamace", icon: "alert-circle" },
@@ -212,7 +212,7 @@ export function PortalSidebar({
               d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
             />
           </svg>
-          <span>Odhlasit se</span>
+          <span>Odhlásit se</span>
         </button>
       </div>
     </>
@@ -224,7 +224,7 @@ export function PortalSidebar({
       <button
         onClick={() => setMobileOpen(true)}
         className="fixed left-4 top-4 z-40 rounded-lg bg-white p-2 shadow-md lg:hidden"
-        aria-label="Otevrit menu"
+        aria-label="Otevřít menu"
       >
         <svg
           className="h-6 w-6 text-neutral-700"
@@ -260,7 +260,7 @@ export function PortalSidebar({
         <button
           onClick={() => setMobileOpen(false)}
           className="absolute right-3 top-3 rounded-lg p-1 text-neutral-400 hover:text-neutral-700"
-          aria-label="Zavrit menu"
+          aria-label="Zavřít menu"
         >
           <svg
             className="h-5 w-5"

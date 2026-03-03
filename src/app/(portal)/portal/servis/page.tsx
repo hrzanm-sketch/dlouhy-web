@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 }
 
 const STATUS_OPTIONS = [
-  { value: "", label: "Vse" },
-  { value: "new", label: "Novy" },
-  { value: "assigned", label: "Prirazen" },
+  { value: "", label: "Vše" },
+  { value: "new", label: "Nový" },
+  { value: "assigned", label: "Přiřazen" },
   { value: "in_progress", label: "V realizaci" },
-  { value: "waiting_parts", label: "Ceka na dily" },
-  { value: "completed", label: "Dokonceno" },
-  { value: "cancelled", label: "Zruseno" },
+  { value: "waiting_parts", label: "Čeká na díly" },
+  { value: "completed", label: "Dokončeno" },
+  { value: "cancelled", label: "Zrušeno" },
 ]
 
 export default async function ServiceRequestsPage({
@@ -39,12 +39,12 @@ export default async function ServiceRequestsPage({
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-neutral-900">Servisni pozadavky</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">Servisní požadavky</h1>
         <Link
           href="/portal/servis/novy"
           className="rounded-lg bg-dt-blue px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-dt-blue-light"
         >
-          Novy pozadavek
+          Nový požadavek
         </Link>
       </div>
 

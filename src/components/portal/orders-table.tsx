@@ -11,13 +11,13 @@ export interface Order {
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  ordered: "Objednano",
+  ordered: "Objednáno",
   confirmed: "Potvrzeno",
-  shipped: "Odeslano",
-  delivered: "Dodano",
-  cancelled: "Zruseno",
-  pending: "Cekajici",
-  completed: "Dokonceno",
+  shipped: "Odesláno",
+  delivered: "Dodáno",
+  cancelled: "Zrušeno",
+  pending: "Čekající",
+  completed: "Dokončeno",
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -34,7 +34,7 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
   if (orders.length === 0) {
     return (
       <p className="py-8 text-center text-neutral-500">
-        Zadne objednavky k zobrazeni.
+        Žádné objednávky k zobrazení.
       </p>
     )
   }
@@ -44,11 +44,11 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
       <table className="w-full text-left text-sm">
         <thead>
           <tr className="border-b border-neutral-200 text-neutral-500">
-            <th className="py-3 pr-4 font-medium">Cislo objednavky</th>
+            <th className="py-3 pr-4 font-medium">Číslo objednávky</th>
             <th className="py-3 pr-4 font-medium">Datum</th>
-            <th className="py-3 pr-4 font-medium">Polozek</th>
+            <th className="py-3 pr-4 font-medium">Položek</th>
             <th className="py-3 pr-4 font-medium">Stav</th>
-            <th className="py-3 text-right font-medium">Castka</th>
+            <th className="py-3 text-right font-medium">Částka</th>
           </tr>
         </thead>
         <tbody>

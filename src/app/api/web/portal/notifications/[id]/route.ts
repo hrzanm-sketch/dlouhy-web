@@ -6,10 +6,10 @@ export async function PATCH(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  await getPortalSession()
+  const session = await getPortalSession()
   const { id } = await params
 
-  const success = await markAsRead(id)
+  const success = await markAsRead(id, session.userId)
   if (!success) {
     return NextResponse.json({ error: "Notification not found" }, { status: 404 })
   }

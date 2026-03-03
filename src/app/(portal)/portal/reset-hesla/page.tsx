@@ -34,8 +34,8 @@ async function requestReset(formData: FormData) {
   await db
     .update(portalUsers)
     .set({
-      inviteToken: token,
-      inviteExpiresAt: expiresAt,
+      resetToken: token,
+      resetExpiresAt: expiresAt,
       updatedAt: new Date(),
     })
     .where(eq(portalUsers.id, user.id))
@@ -71,11 +71,11 @@ export default async function ResetPasswordPage({
             <h1 className="text-xl font-bold text-dt-blue">Obnova hesla</h1>
             {sent ? (
               <p className="mt-2 text-sm text-green-700">
-                Pokud existuje ucet s timto emailem, poslali jsme Vam odkaz pro obnovu hesla. Zkontrolujte svou schranku.
+                Pokud existuje účet s tímto emailem, poslali jsme Vám odkaz pro obnovu hesla. Zkontrolujte svou schránku.
               </p>
             ) : (
               <p className="mt-2 text-sm text-neutral-500">
-                Zadejte svuj email a my vam posleme odkaz pro obnovu hesla.
+                Zadejte svůj email a my vám pošleme odkaz pro obnovu hesla.
               </p>
             )}
           </div>
@@ -114,7 +114,7 @@ export default async function ResetPasswordPage({
               href="/portal/login"
               className="text-sm text-dt-blue hover:underline"
             >
-              Zpet na prihlaseni
+              Zpět na přihlášení
             </Link>
           </div>
         </div>

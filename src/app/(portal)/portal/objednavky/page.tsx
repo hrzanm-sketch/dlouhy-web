@@ -7,15 +7,15 @@ import { getPortalSession } from "@/lib/portal/get-session"
 import { getOrders } from "@/lib/portal/queries"
 
 export const metadata: Metadata = {
-  title: "Objednavky",
+  title: "Objednávky",
 }
 
 const STATUS_OPTIONS = [
-  { value: "", label: "Vse" },
-  { value: "ordered", label: "Objednano" },
+  { value: "", label: "Vše" },
+  { value: "ordered", label: "Objednáno" },
   { value: "confirmed", label: "Potvrzeno" },
-  { value: "shipped", label: "Odeslano" },
-  { value: "delivered", label: "Dodano" },
+  { value: "shipped", label: "Odesláno" },
+  { value: "delivered", label: "Dodáno" },
 ]
 
 export default async function OrdersPage({
@@ -35,7 +35,7 @@ export default async function OrdersPage({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-neutral-900">Objednavky</h1>
+      <h1 className="text-2xl font-bold text-neutral-900">Objednávky</h1>
 
       <Suspense fallback={null}>
         <StatusFilter options={STATUS_OPTIONS} paramName="status" />

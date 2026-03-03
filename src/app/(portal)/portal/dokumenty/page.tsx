@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
-  certificate: "Certifikat",
+  certificate: "Certifikát",
   protocol: "Protokol",
-  manual: "Navod",
-  report: "Zprava",
+  manual: "Návod",
+  report: "Zpráva",
   catalog: "Katalog",
   datasheet: "Datasheet",
 }
@@ -29,11 +29,11 @@ const CATEGORY_COLORS: Record<string, string> = {
 }
 
 const TYPE_OPTIONS = [
-  { value: "", label: "Vse" },
-  { value: "certificate", label: "Certifikaty" },
+  { value: "", label: "Vše" },
+  { value: "certificate", label: "Certifikáty" },
   { value: "protocol", label: "Protokoly" },
-  { value: "manual", label: "Navody" },
-  { value: "report", label: "Zpravy" },
+  { value: "manual", label: "Návody" },
+  { value: "report", label: "Zprávy" },
   { value: "catalog", label: "Katalogy" },
   { value: "datasheet", label: "Datasheety" },
 ]
@@ -74,15 +74,15 @@ export default async function DocumentsPage({
 
       <div className="rounded-lg border border-neutral-200 bg-white p-4">
         {documents.length === 0 ? (
-          <p className="py-8 text-center text-neutral-500">Zadne dokumenty k zobrazeni.</p>
+          <p className="py-8 text-center text-neutral-500">Žádné dokumenty k zobrazení.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-neutral-200 text-neutral-500">
-                  <th className="py-3 pr-4 font-medium">Nazev</th>
+                  <th className="py-3 pr-4 font-medium">Název</th>
                   <th className="py-3 pr-4 font-medium">Kategorie</th>
-                  <th className="py-3 pr-4 font-medium">Vyrobce</th>
+                  <th className="py-3 pr-4 font-medium">Výrobce</th>
                   <th className="py-3 font-medium">Velikost</th>
                 </tr>
               </thead>

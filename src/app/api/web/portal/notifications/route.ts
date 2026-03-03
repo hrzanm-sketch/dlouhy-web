@@ -6,8 +6,8 @@ export async function GET() {
   const session = await getPortalSession()
 
   const [notifications, unreadCount] = await Promise.all([
-    getNotifications(session.companyId),
-    getUnreadCount(session.companyId),
+    getNotifications(session.companyId, session.userId),
+    getUnreadCount(session.companyId, session.userId),
   ])
 
   return NextResponse.json({ notifications, unreadCount })

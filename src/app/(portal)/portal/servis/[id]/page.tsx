@@ -6,12 +6,12 @@ import { getPortalSession } from "@/lib/portal/get-session"
 import { getServiceRequestById } from "@/lib/portal/queries"
 
 const STATUS_LABELS: Record<string, string> = {
-  new: "Novy",
-  assigned: "Prirazen",
+  new: "Nový",
+  assigned: "Přiřazen",
   in_progress: "V realizaci",
-  waiting_parts: "Ceka na dily",
-  completed: "Dokonceno",
-  cancelled: "Zruseno",
+  waiting_parts: "Čeká na díly",
+  completed: "Dokončeno",
+  cancelled: "Zrušeno",
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -24,10 +24,10 @@ const STATUS_COLORS: Record<string, string> = {
 }
 
 const PRIORITY_LABELS: Record<string, string> = {
-  critical: "Kriticka",
-  high: "Vysoka",
-  normal: "Normalni",
-  low: "Nizka",
+  critical: "Kritická",
+  high: "Vysoká",
+  normal: "Normální",
+  low: "Nízká",
 }
 
 const PRIORITY_COLORS: Record<string, string> = {
@@ -39,7 +39,7 @@ const PRIORITY_COLORS: Record<string, string> = {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Detail servisniho pozadavku",
+    title: "Detail servisního požadavku",
   }
 }
 
@@ -62,7 +62,7 @@ export default async function ServiceRequestDetailPage({
         href="/portal/servis"
         className="inline-flex items-center text-sm text-neutral-500 hover:text-neutral-700"
       >
-        &larr; Zpet na servisni pozadavky
+        &larr; Zpět na servisní požadavky
       </Link>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -71,7 +71,7 @@ export default async function ServiceRequestDetailPage({
             {request.title}
           </h1>
           <p className="mt-1 text-sm text-neutral-400">
-            Vytvoreno: {formatDate(request.createdAt)}
+            Vytvořeno: {formatDate(request.createdAt)}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -114,14 +114,14 @@ export default async function ServiceRequestDetailPage({
             </div>
             {request.scheduledDate && (
               <div>
-                <dt className="text-neutral-500">Naplanovano na</dt>
+                <dt className="text-neutral-500">Naplánováno na</dt>
                 <dd className="font-medium text-neutral-900">
                   {formatDate(request.scheduledDate)}
                 </dd>
               </div>
             )}
             <div>
-              <dt className="text-neutral-500">Vytvoreno</dt>
+              <dt className="text-neutral-500">Vytvořeno</dt>
               <dd className="font-medium text-neutral-900">
                 {formatDate(request.createdAt)}
               </dd>

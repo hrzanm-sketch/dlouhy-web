@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 }
 
 const STATUS_OPTIONS = [
-  { value: "", label: "Vse" },
-  { value: "received", label: "Prijato" },
-  { value: "evaluating", label: "V setreni" },
+  { value: "", label: "Vše" },
+  { value: "received", label: "Přijato" },
+  { value: "evaluating", label: "V šetření" },
   { value: "sent_to_supplier", label: "U dodavatele" },
-  { value: "resolved", label: "Vyreseno" },
-  { value: "rejected", label: "Zamitnuto" },
+  { value: "resolved", label: "Vyřešeno" },
+  { value: "rejected", label: "Zamítnuto" },
 ]
 
 export default async function ClaimsPage({
@@ -43,7 +43,7 @@ export default async function ClaimsPage({
           href="/portal/reklamace/nova"
           className="rounded-lg bg-dt-blue px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-dt-blue-light"
         >
-          Nova reklamace
+          Nová reklamace
         </Link>
       </div>
 

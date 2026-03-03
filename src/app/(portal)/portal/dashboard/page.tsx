@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  ordered: "Objednano",
+  ordered: "Objednáno",
   confirmed: "Potvrzeno",
-  shipped: "Odeslano",
-  delivered: "Dodano",
+  shipped: "Odesláno",
+  delivered: "Dodáno",
 }
 
 export default async function DashboardPage() {
@@ -22,7 +22,7 @@ export default async function DashboardPage() {
 
   const kpiCards = [
     {
-      title: "Objednavky",
+      title: "Objednávky",
       count: data.ordersCount,
       href: "/portal/objednavky",
     },
@@ -58,36 +58,36 @@ export default async function DashboardPage() {
           href="/portal/servis/novy"
           className="rounded-lg bg-dt-blue px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-dt-blue-dark"
         >
-          Novy servisni pozadavek
+          Nový servisní požadavek
         </Link>
         <Link
           href="/portal/reklamace/nova"
           className="rounded-lg border border-dt-blue px-4 py-2 text-sm font-medium text-dt-blue transition-colors hover:bg-dt-blue hover:text-white"
         >
-          Nova reklamace
+          Nová reklamace
         </Link>
       </div>
 
       <section>
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-neutral-900">
-            Posledni objednavky
+            Poslední objednávky
           </h2>
           <Link
             href="/portal/objednavky"
             className="text-sm text-dt-blue hover:underline"
           >
-            Zobrazit vse
+            Zobrazit vše
           </Link>
         </div>
         <div className="overflow-x-auto rounded-lg border border-neutral-200 bg-white">
           <table className="w-full text-left text-sm">
             <thead>
               <tr className="border-b border-neutral-200 text-neutral-500">
-                <th className="px-4 py-3 font-medium">Cislo</th>
+                <th className="px-4 py-3 font-medium">Číslo</th>
                 <th className="px-4 py-3 font-medium">Datum</th>
                 <th className="px-4 py-3 font-medium">Stav</th>
-                <th className="px-4 py-3 text-right font-medium">Castka</th>
+                <th className="px-4 py-3 text-right font-medium">Částka</th>
               </tr>
             </thead>
             <tbody>
@@ -120,7 +120,7 @@ export default async function DashboardPage() {
               {data.recentOrders.length === 0 && (
                 <tr>
                   <td colSpan={4} className="px-4 py-8 text-center text-neutral-500">
-                    Zadne objednavky
+                    Žádné objednávky
                   </td>
                 </tr>
               )}
@@ -132,13 +132,13 @@ export default async function DashboardPage() {
       <section>
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-neutral-900">
-            Neuhrazene faktury
+            Neuhrazené faktury
           </h2>
           <Link
             href="/portal/faktury"
             className="text-sm text-dt-blue hover:underline"
           >
-            Zobrazit vse
+            Zobrazit vše
           </Link>
         </div>
         <div className="space-y-3">
@@ -169,7 +169,7 @@ export default async function DashboardPage() {
             </Link>
           ))}
           {data.unpaidInvoices.length === 0 && (
-            <p className="text-sm text-neutral-500">Vse uhrazeno.</p>
+            <p className="text-sm text-neutral-500">Vše uhrazeno.</p>
           )}
         </div>
       </section>

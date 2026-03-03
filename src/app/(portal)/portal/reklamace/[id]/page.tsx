@@ -6,11 +6,11 @@ import { getPortalSession } from "@/lib/portal/get-session"
 import { getClaimById } from "@/lib/portal/queries"
 
 const STATUS_LABELS: Record<string, string> = {
-  received: "Prijato",
-  evaluating: "V setreni",
+  received: "Přijato",
+  evaluating: "V šetření",
   sent_to_supplier: "U dodavatele",
-  resolved: "Vyreseno",
-  rejected: "Zamitnuto",
+  resolved: "Vyřešeno",
+  rejected: "Zamítnuto",
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -46,7 +46,7 @@ export default async function ClaimDetailPage({
         href="/portal/reklamace"
         className="inline-flex items-center text-sm text-neutral-500 hover:text-neutral-700"
       >
-        &larr; Zpet na reklamace
+        &larr; Zpět na reklamace
       </Link>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -55,7 +55,7 @@ export default async function ClaimDetailPage({
             {claim.title}
           </h1>
           <p className="mt-1 text-sm text-neutral-400">
-            Vytvoreno: {formatDate(claim.createdAt)}
+            Vytvořeno: {formatDate(claim.createdAt)}
           </p>
         </div>
         <span
@@ -81,14 +81,14 @@ export default async function ClaimDetailPage({
               </dd>
             </div>
             <div>
-              <dt className="text-neutral-500">Vytvoreno</dt>
+              <dt className="text-neutral-500">Vytvořeno</dt>
               <dd className="font-medium text-neutral-900">
                 {formatDate(claim.createdAt)}
               </dd>
             </div>
             {claim.resolvedAt && (
               <div>
-                <dt className="text-neutral-500">Vyreseno</dt>
+                <dt className="text-neutral-500">Vyřešeno</dt>
                 <dd className="font-medium text-green-700">
                   {formatDate(claim.resolvedAt)}
                 </dd>

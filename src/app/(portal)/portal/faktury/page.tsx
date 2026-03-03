@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 const STATUS_OPTIONS = [
-  { value: "", label: "Vse" },
+  { value: "", label: "Vše" },
   { value: "sent", label: "Neuhrazeno" },
   { value: "paid", label: "Uhrazeno" },
   { value: "overdue", label: "Po splatnosti" },

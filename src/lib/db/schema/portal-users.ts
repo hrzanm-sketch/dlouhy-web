@@ -3,6 +3,7 @@ import {
   boolean,
   jsonb,
   pgTable,
+  text,
   timestamp,
   uuid,
   varchar,
@@ -26,6 +27,8 @@ export const portalUsers = pgTable("portal_users", {
   invitedBy: uuid("invited_by"),
   inviteToken: varchar("invite_token", { length: 255 }),
   inviteExpiresAt: timestamp("invite_expires_at", { withTimezone: true }),
+  resetToken: text("reset_token"),
+  resetExpiresAt: timestamp("reset_expires_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),

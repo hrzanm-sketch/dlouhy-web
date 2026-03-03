@@ -24,12 +24,12 @@ export function LoginForm() {
       })
 
       if (result?.error) {
-        setError("Neplatny email nebo heslo")
+        setError("Neplatný email nebo heslo")
       } else {
         router.push("/portal/dashboard")
       }
     } catch {
-      setError("Doslo k chybe. Zkuste to znovu.")
+      setError("Došlo k chybě. Zkuste to znovu.")
     } finally {
       setLoading(false)
     }
@@ -85,7 +85,7 @@ export function LoginForm() {
         disabled={loading}
         className="w-full rounded-md bg-dt-blue px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-dt-blue-light focus:ring-2 focus:ring-dt-blue focus:ring-offset-2 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {loading ? "Prihlasuji..." : "Prihlasit se"}
+        {loading ? "Přihlašuji..." : "Přihlásit se"}
       </button>
     </form>
   )

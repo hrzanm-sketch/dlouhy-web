@@ -12,14 +12,14 @@ export interface Claim {
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  received: "Prijato",
-  evaluating: "V setreni",
+  received: "Přijato",
+  evaluating: "V šetření",
   sent_to_supplier: "U dodavatele",
-  resolved: "Vyreseno",
-  rejected: "Zamitnuto",
-  new: "Nova",
-  investigating: "V setreni",
-  approved: "Schvaleno",
+  resolved: "Vyřešeno",
+  rejected: "Zamítnuto",
+  new: "Nová",
+  investigating: "V šetření",
+  approved: "Schváleno",
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -35,8 +35,8 @@ const STATUS_COLORS: Record<string, string> = {
 
 const RESOLUTION_LABELS: Record<string, string> = {
   repair: "Oprava",
-  replacement: "Vymena",
-  refund: "Vraceni penez",
+  replacement: "Výměna",
+  refund: "Vrácení peněz",
   discount: "Sleva",
 }
 
@@ -44,7 +44,7 @@ export function ClaimsTable({ claims }: { claims: Claim[] }) {
   if (claims.length === 0) {
     return (
       <p className="py-8 text-center text-neutral-500">
-        Zadne reklamace k zobrazeni.
+        Žádné reklamace k zobrazení.
       </p>
     )
   }
@@ -54,10 +54,10 @@ export function ClaimsTable({ claims }: { claims: Claim[] }) {
       <table className="w-full text-left text-sm">
         <thead>
           <tr className="border-b border-neutral-200 text-neutral-500">
-            <th className="py-3 pr-4 font-medium">Cislo</th>
+            <th className="py-3 pr-4 font-medium">Číslo</th>
             <th className="py-3 pr-4 font-medium">Datum</th>
             <th className="py-3 pr-4 font-medium">Produkt</th>
-            <th className="py-3 pr-4 font-medium">Pozadovane reseni</th>
+            <th className="py-3 pr-4 font-medium">Požadované řešení</th>
             <th className="py-3 font-medium">Stav</th>
           </tr>
         </thead>

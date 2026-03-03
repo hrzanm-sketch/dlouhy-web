@@ -46,7 +46,7 @@ export default async function InvoiceDetailPage({
         href="/portal/faktury"
         className="inline-flex items-center text-sm text-neutral-500 hover:text-neutral-700"
       >
-        &larr; Zpet na faktury
+        &larr; Zpět na faktury
       </Link>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -79,7 +79,7 @@ export default async function InvoiceDetailPage({
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="rounded-lg border border-neutral-200 bg-white p-6 lg:col-span-1">
           <h2 className="mb-4 text-lg font-semibold text-neutral-900">
-            Platebni udaje
+            Platební údaje
           </h2>
           <dl className="space-y-3 text-sm">
             <div>
@@ -105,7 +105,7 @@ export default async function InvoiceDetailPage({
             )}
             {invoice.note && (
               <div>
-                <dt className="text-neutral-500">Poznamka</dt>
+                <dt className="text-neutral-500">Poznámka</dt>
                 <dd className="text-neutral-700">{invoice.note}</dd>
               </div>
             )}
@@ -114,19 +114,19 @@ export default async function InvoiceDetailPage({
 
         <div className="rounded-lg border border-neutral-200 bg-white p-6 lg:col-span-2">
           <h2 className="mb-4 text-lg font-semibold text-neutral-900">
-            Informace o fakture
+            Informace o faktuře
           </h2>
           <dl className="space-y-3 text-sm">
             <div>
-              <dt className="text-neutral-500">Cislo faktury</dt>
+              <dt className="text-neutral-500">Číslo faktury</dt>
               <dd className="font-medium text-neutral-900">{invoice.invoiceNumber}</dd>
             </div>
             <div>
-              <dt className="text-neutral-500">Castka</dt>
+              <dt className="text-neutral-500">Částka</dt>
               <dd className="font-medium text-neutral-900">{formatAmount(invoice.amount)}</dd>
             </div>
             <div>
-              <dt className="text-neutral-500">Datum vystaveni</dt>
+              <dt className="text-neutral-500">Datum vystavení</dt>
               <dd className="font-medium text-neutral-900">{formatDate(invoice.date)}</dd>
             </div>
             <div>

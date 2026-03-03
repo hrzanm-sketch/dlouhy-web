@@ -32,7 +32,7 @@ export function InvoicesTable({ invoices }: { invoices: Invoice[] }) {
   if (invoices.length === 0) {
     return (
       <p className="py-8 text-center text-neutral-500">
-        Zadne faktury k zobrazeni.
+        Žádné faktury k zobrazení.
       </p>
     )
   }
@@ -42,11 +42,11 @@ export function InvoicesTable({ invoices }: { invoices: Invoice[] }) {
       <table className="w-full text-left text-sm">
         <thead>
           <tr className="border-b border-neutral-200 text-neutral-500">
-            <th className="py-3 pr-4 font-medium">Cislo faktury</th>
-            <th className="py-3 pr-4 font-medium">Datum vystaveni</th>
+            <th className="py-3 pr-4 font-medium">Číslo faktury</th>
+            <th className="py-3 pr-4 font-medium">Datum vystavení</th>
             <th className="py-3 pr-4 font-medium">Splatnost</th>
             <th className="py-3 pr-4 font-medium">Stav</th>
-            <th className="py-3 pr-4 text-right font-medium">Castka</th>
+            <th className="py-3 pr-4 text-right font-medium">Částka</th>
             <th className="py-3 text-right font-medium">Akce</th>
           </tr>
         </thead>

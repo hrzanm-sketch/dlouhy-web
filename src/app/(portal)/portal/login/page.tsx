@@ -3,7 +3,7 @@ import Link from "next/link"
 import { LoginForm } from "@/components/portal/login-form"
 
 export const metadata: Metadata = {
-  title: "Prihlaseni do portalu",
+  title: "Přihlášení do portálu",
 }
 
 export default function LoginPage() {
@@ -16,7 +16,7 @@ export default function LoginPage() {
               Dlouhy Technology
             </h1>
             <p className="mt-1 text-sm text-neutral-500">
-              Zakaznicky portal
+              Zákaznický portál
             </p>
           </div>
 
@@ -27,7 +27,7 @@ export default function LoginPage() {
               href="/portal/reset-hesla"
               className="text-sm text-dt-blue hover:underline"
             >
-              Zapomneli jste heslo?
+              Zapomněli jste heslo?
             </Link>
           </div>
         </div>

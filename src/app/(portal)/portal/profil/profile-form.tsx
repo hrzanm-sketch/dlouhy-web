@@ -30,7 +30,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
             htmlFor="firstName"
             className="block text-sm font-medium text-neutral-700"
           >
-            Jmeno
+            Jméno
           </label>
           <input
             id="firstName"
@@ -46,7 +46,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
             htmlFor="lastName"
             className="block text-sm font-medium text-neutral-700"
           >
-            Prijmeni
+            Příjmení
           </label>
           <input
             id="lastName"
@@ -74,7 +74,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
           className="mt-1 block w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-500"
         />
         <p className="mt-1 text-xs text-neutral-400">
-          Email nelze zmenit.
+          Email nelze změnit.
         </p>
       </div>
 
@@ -114,7 +114,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
         <p className="text-sm text-red-600">{state.error}</p>
       )}
       {state?.success && (
-        <p className="text-sm text-green-600">Profil byl aktualizovan.</p>
+        <p className="text-sm text-green-600">Profil byl aktualizován.</p>
       )}
 
       <button
@@ -125,7 +125,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
           pending && "cursor-not-allowed opacity-60",
         )}
       >
-        {pending ? "Ukladam..." : "Ulozit zmeny"}
+        {pending ? "Ukládám..." : "Uložit změny"}
       </button>
     </form>
   )

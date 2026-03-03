@@ -12,12 +12,12 @@ export interface ServiceRequest {
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  new: "Novy",
-  assigned: "Prirazen",
+  new: "Nový",
+  assigned: "Přiřazen",
   in_progress: "V realizaci",
-  waiting_parts: "Ceka na dily",
-  completed: "Dokonceno",
-  cancelled: "Zruseno",
+  waiting_parts: "Čeká na díly",
+  completed: "Dokončeno",
+  cancelled: "Zrušeno",
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -37,11 +37,11 @@ const TYPE_LABELS: Record<string, string> = {
 }
 
 const URGENCY_LABELS: Record<string, string> = {
-  normal: "Normalni",
-  low: "Nizka",
-  high: "Vysoka",
-  urgent: "Nahle",
-  critical: "Kriticka",
+  normal: "Normální",
+  low: "Nízká",
+  high: "Vysoká",
+  urgent: "Náhlé",
+  critical: "Kritická",
 }
 
 const URGENCY_COLORS: Record<string, string> = {
@@ -56,7 +56,7 @@ export function ServiceRequestsTable({ requests }: { requests: ServiceRequest[] 
   if (requests.length === 0) {
     return (
       <p className="py-8 text-center text-neutral-500">
-        Zadne servisni pozadavky k zobrazeni.
+        Žádné servisní požadavky k zobrazení.
       </p>
     )
   }
@@ -66,10 +66,10 @@ export function ServiceRequestsTable({ requests }: { requests: ServiceRequest[] 
       <table className="w-full text-left text-sm">
         <thead>
           <tr className="border-b border-neutral-200 text-neutral-500">
-            <th className="py-3 pr-4 font-medium">Cislo</th>
+            <th className="py-3 pr-4 font-medium">Číslo</th>
             <th className="py-3 pr-4 font-medium">Datum</th>
             <th className="py-3 pr-4 font-medium">Typ</th>
-            <th className="py-3 pr-4 font-medium">Nalehavost</th>
+            <th className="py-3 pr-4 font-medium">Naléhavost</th>
             <th className="py-3 pr-4 font-medium">Stav</th>
             <th className="py-3 font-medium">Popis</th>
           </tr>

@@ -53,23 +53,7 @@ export async function createNotification(data: CreateNotificationData) {
   return rows
 }
 
-export async function getNotifications(companyId: string) {
-  const users = await db
-    .select({ id: portalUsers.id })
-    .from(portalUsers)
-    .where(
-      and(
-        eq(portalUsers.companyId, companyId),
-        eq(portalUsers.isActive, true),
-        isNull(portalUsers.deletedAt),
-      ),
-    )
-
-  if (users.length === 0) return []
-
-  // For portal, typically one user per session — use first match
-  const userId = users[0].id
-
+export async function getNotifications(_companyId: string, userId: string) {
   return db
     .select()
     .from(portalNotifications)
@@ -77,22 +61,7 @@ export async function getNotifications(companyId: string) {
     .orderBy(desc(portalNotifications.createdAt))
 }
 
-export async function getUnreadCount(companyId: string): Promise<number> {
-  const users = await db
-    .select({ id: portalUsers.id })
-    .from(portalUsers)
-    .where(
-      and(
-        eq(portalUsers.companyId, companyId),
-        eq(portalUsers.isActive, true),
-        isNull(portalUsers.deletedAt),
-      ),
-    )
-
-  if (users.length === 0) return 0
-
-  const userId = users[0].id
-
+export async function getUnreadCount(_companyId: string, userId: string): Promise<number> {
   const result = await db
     .select({ count: count() })
     .from(portalNotifications)
@@ -106,32 +75,22 @@ export async function getUnreadCount(companyId: string): Promise<number> {
   return result[0]?.count ?? 0
 }
 
-export async function markAsRead(notificationId: string): Promise<boolean> {
+export async function markAsRead(notificationId: string, userId: string): Promise<boolean> {
   const result = await db
     .update(portalNotifications)
     .set({ isRead: true })
-    .where(eq(portalNotifications.id, notificationId))
+    .where(
+      and(
+        eq(portalNotifications.id, notificationId),
+        eq(portalNotifications.userId, userId),
+      ),
+    )
     .returning({ id: portalNotifications.id })
 
   return result.length > 0
 }
 
-export async function markAllRead(companyId: string): Promise<number> {
-  const users = await db
-    .select({ id: portalUsers.id })
-    .from(portalUsers)
-    .where(
-      and(
-        eq(portalUsers.companyId, companyId),
-        eq(portalUsers.isActive, true),
-        isNull(portalUsers.deletedAt),
-      ),
-    )
-
-  if (users.length === 0) return 0
-
-  const userId = users[0].id
-
+export async function markAllRead(_companyId: string, userId: string): Promise<number> {
   const result = await db
     .update(portalNotifications)
     .set({ isRead: true })

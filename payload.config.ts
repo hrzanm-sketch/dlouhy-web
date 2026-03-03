@@ -14,13 +14,17 @@ import { SiteSettings } from "@/payload/globals/SiteSettings"
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const payloadSecret = process.env.PAYLOAD_SECRET
+if (!payloadSecret) throw new Error("PAYLOAD_SECRET environment variable is required")
+
+const databaseUrl = process.env.DATABASE_URL
+if (!databaseUrl) throw new Error("DATABASE_URL environment variable is required")
+
 export default buildConfig({
-  secret: process.env.PAYLOAD_SECRET || "dev-secret-change-me",
+  secret: payloadSecret,
   db: postgresAdapter({
     pool: {
-      connectionString:
-        process.env.DATABASE_URL ||
-        "postgresql://dt:dt_local_dev@localhost:5432/dt_intranet",
+      connectionString: databaseUrl,
     },
   }),
   editor: lexicalEditor(),
