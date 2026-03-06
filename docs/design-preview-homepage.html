@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DT Web — Design Preview — Homepage</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --bg-card-hover: #263548;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #f59e0b;
+    --accent-hover: #d97706;
+    --samson-blue: #3b82f6;
+    --border: #334155;
+    --border-light: #1e293b;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+  }
+  .logo span { color: var(--accent); }
+
+  nav {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.3px;
+  }
+  nav a:hover { color: var(--text-primary); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--bg-primary) !important;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent-hover); }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 48px 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+      linear-gradient(180deg, var(--bg-primary) 0%, #0c1322 100%);
+  }
+
+  /* Subtle grid pattern */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(51, 65, 85, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(51, 65, 85, 0.3) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: var(--accent);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero h1 .blue { color: var(--samson-blue); }
+
+  .hero-sub {
+    font-size: 20px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+  }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--text-secondary); background: rgba(255,255,255,0.03); }
+
+  /* ===== PROOF POINTS ===== */
+  .proof-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .proof-item {
+    background: var(--bg-primary);
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .proof-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .proof-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    padding: 120px 48px;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 64px;
+  }
+  .section-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-header p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ===== PRODUCTS ===== */
+  .products-section { background: var(--bg-secondary); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--samson-blue));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .product-card:hover::before { opacity: 1; }
+
+  .product-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+  }
+
+  .product-brand {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+  .product-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .product-card p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .product-link {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+  .product-link:hover { gap: 10px; }
+
+  /* ===== SERVICES ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    display: flex;
+    gap: 24px;
+    transition: border-color 0.3s;
+  }
+  .service-card:hover { border-color: var(--text-muted); }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .service-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .service-card p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ===== INDUSTRIES ===== */
+  .industries-section { background: var(--bg-secondary); }
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .industry-item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .industry-item:hover {
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+  }
+  .industry-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .industry-item span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .industry-item:hover span { color: var(--text-primary); }
+
+  /* ===== REFERENCES ===== */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ref-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    transition: border-color 0.3s;
+  }
+  .ref-card:hover { border-color: var(--text-muted); }
+  .ref-quote {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    padding-left: 20px;
+    border-left: 3px solid var(--accent);
+  }
+  .ref-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ref-company {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .ref-industry {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(245, 158, 11, 0.1);
+    padding: 4px 12px;
+    border-radius: 50px;
+  }
+
+  /* ===== PARTNERS ===== */
+  .partners {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 48px;
+    text-align: center;
+  }
+  .partners-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+  }
+  .partners-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+  }
+  .partner-logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-muted);
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    letter-spacing: -1px;
+  }
+  .partner-logo:hover { opacity: 1; }
+  .partner-logo.samson { color: #3b82f6; }
+  .partner-logo.elco { color: #ef4444; }
+  .partner-logo.schroedahl { color: #10b981; }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    background: var(--bg-secondary);
+    text-align: center;
+  }
+  .cta-box {
+    max-width: 700px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 80px 60px;
+  }
+  .cta-box h2 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .cta-box p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+  .cta-box .btn-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 80px 48px 40px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+  }
+  .footer-brand p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 16px;
+  }
+  .footer-col h4 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--text-primary); }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .industries-grid { grid-template-columns: repeat(2, 1fr); }
+    .ref-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    header { padding: 16px 24px; }
+    nav { display: none; }
+    section { padding: 80px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .proof-bar { grid-template-columns: repeat(2, 1fr); }
+    .industries-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== DESIGN NOTE BANNER ===== */
+  .design-note {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(245, 158, 11, 0.95);
+    color: #0f172a;
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 200;
+    backdrop-filter: blur(10px);
+  }
+</style>
+</head>
+<body>
+
+<div class="design-note">
+  DESIGN PREVIEW — Dlouhy Technology Homepage — Koncept "Precision Engineering" (dark theme + amber accent)
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">DLOUHY<span>.</span>TECHNOLOGY</div>
+  <nav>
+    <a href="#">Produkty</a>
+    <a href="#">Servis</a>
+    <a href="#">Reference</a>
+    <a href="#">O nás</a>
+    <a href="#">Ke stažení</a>
+    <a href="#" class="nav-cta">Kontakt</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span>&#9679;</span> Výhradní distributor SAMSON pro ČR a SK
+    </div>
+    <h1>
+      Přesná <span class="accent">regulace.</span><br>
+      Spolehlivý <span class="blue">servis.</span>
+    </h1>
+    <p class="hero-sub">
+      35 let zkušeností v průmyslové regulační technice.
+      Regulační ventily, hořáky a recirkulační systémy
+      pro energetiku, teplárenství a průmysl.
+    </p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">Potřebuji řešení &rarr;</a>
+      <a href="#" class="btn btn-secondary">Prozkoumat produkty</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF POINTS -->
+<div class="proof-bar">
+  <div class="proof-item">
+    <div class="proof-number">35+</div>
+    <div class="proof-label">Let zkušeností</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-number">2 000+</div>
+    <div class="proof-label">Instalací</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-number">24/7</div>
+    <div class="proof-label">Servisní podpora</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-number">3</div>
+    <div class="proof-label">Země působení</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="section-header">
+    <div class="section-tag">Produkty</div>
+    <h2>Průmyslová regulační technika od světových výrobců</h2>
+    <p>Kompletní portfolio regulačních ventilů, hořáků a ochranných systémů pro kritické průmyslové aplikace.</p>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-icon">&#9881;</div>
+      <div class="product-brand">SAMSON</div>
+      <h3>Regulační ventily</h3>
+      <p>Pneumatické a elektrické regulační ventily, pozicionéry a příslušenství pro přesnou regulaci procesních médií.</p>
+      <a href="#" class="product-link">Prozkoumat &rarr;</a>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">&#128293;</div>
+      <div class="product-brand">ELCO</div>
+      <h3>Průmyslové hořáky</h3>
+      <p>Plynové, olejové a kombinované hořáky pro kotelny, sušárny a průmyslové pece. Vysoká účinnost spalování.</p>
+      <a href="#" class="product-link">Prozkoumat &rarr;</a>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">&#9852;</div>
+      <div class="product-brand">SCHROEDAHL / CIRCOR</div>
+      <h3>Recirkulační ventily</h3>
+      <p>Ochrana čerpadel a kompresorů. Recirkulační a pojistné ventily pro kritické aplikace v energetice.</p>
+      <a href="#" class="product-link">Prozkoumat &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <div class="section-header">
+    <div class="section-tag">Služby</div>
+    <h2>Od návrhu po celoživotní servis</h2>
+    <p>Kompletní technická podpora — návrh, dimenzování, montáž, uvedení do provozu a 24/7 servis.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">&#128736;</div>
+      <div>
+        <h3>Technický návrh</h3>
+        <p>Dimenzování a výběr optimálních armatur pro vaši aplikaci. Výpočty Kv, materiálové specifikace, provozní analýza.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#9889;</div>
+      <div>
+        <h3>Montáž a uvedení do provozu</h3>
+        <p>Profesionální instalace certifikovanými techniky. Nastavení parametrů, zkušební provoz, protokol o předání.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128260;</div>
+      <div>
+        <h3>Servis 24/7</h3>
+        <p>Nepřetržitá servisní podpora pro kritické provozy. Preventivní údržba, revize, opravy a kalibrace.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128230;</div>
+      <div>
+        <h3>Náhradní díly</h3>
+        <p>Skladem originální díly SAMSON, ELCO a SCHROEDAHL. Expresní dodání pro minimalizaci prostojů.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries-section">
+  <div class="section-header">
+    <div class="section-tag">Odvětví</div>
+    <h2>Řešení pro klíčová průmyslová odvětví</h2>
+  </div>
+
+  <div class="industries-grid">
+    <div class="industry-item">
+      <div class="industry-icon">&#127777;</div>
+      <span>Teplárenství</span>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">&#9889;</div>
+      <span>Energetika</span>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">&#9878;</div>
+      <span>Chemie</span>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">&#127981;</div>
+      <span>Petrochemie</span>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">&#128167;</div>
+      <span>Vodárenství</span>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">&#127854;</div>
+      <span>Potravinářství</span>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">&#128684;</div>
+      <span>Stavebnictví</span>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">&#9881;</div>
+      <span>Strojírenství</span>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section>
+  <div class="section-header">
+    <div class="section-tag">Reference</div>
+    <h2>Důvěřují nám klíčoví hráči v energetice</h2>
+  </div>
+
+  <div class="ref-grid">
+    <div class="ref-card">
+      <div class="ref-quote">Dodávka a instalace 48 regulačních ventilů SAMSON pro modernizaci tepelného výměníku. Projekt dokončen v termínu s nulovou nehodovostí.</div>
+      <div class="ref-meta">
+        <span class="ref-company">Pražská teplárenská</span>
+        <span class="ref-industry">Teplárenství</span>
+      </div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-quote">Kompletní výměna hořákového systému ELCO v průmyslové kotelně. Snížení spotřeby paliva o 18 % a emisí NOx o 35 %.</div>
+      <div class="ref-meta">
+        <span class="ref-company">Unipetrol RPA</span>
+        <span class="ref-industry">Petrochemie</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<div class="partners">
+  <div class="partners-label">Autorizovaný partner</div>
+  <div class="partners-logos">
+    <div class="partner-logo samson">SAMSON</div>
+    <div class="partner-logo elco">ELCO</div>
+    <div class="partner-logo schroedahl">SCHROEDAHL</div>
+    <div class="partner-logo" style="color: #8b5cf6;">CIRCOR</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Potřebujete regulační řešení?</h2>
+    <p>Ať už jde o nový projekt, modernizaci nebo servis — jsme tu pro vás. Odpovíme do 24 hodin.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-primary">Poslat poptávku &rarr;</a>
+      <a href="#" class="btn btn-secondary">Zavolat +420 XXX XXX XXX</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">DLOUHY<span>.</span>TECHNOLOGY</div>
+      <p>Výhradní distributor SAMSON pro Českou republiku a Slovensko. Regulační ventily, průmyslové hořáky a ochranné systémy pro kritické průmyslové aplikace.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produkty</h4>
+      <a href="#">SAMSON ventily</a>
+      <a href="#">ELCO hořáky</a>
+      <a href="#">SCHROEDAHL</a>
+      <a href="#">Příslušenství</a>
+    </div>
+    <div class="footer-col">
+      <h4>Služby</h4>
+      <a href="#">Technický návrh</a>
+      <a href="#">Servis 24/7</a>
+      <a href="#">Náhradní díly</a>
+      <a href="#">Ke stažení</a>
+    </div>
+    <div class="footer-col">
+      <h4>Firma</h4>
+      <a href="#">O nás</a>
+      <a href="#">Reference</a>
+      <a href="#">Novinky</a>
+      <a href="#">Kontakt</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Dlouhy Technology s.r.o.</span>
+    <span>Obchodní podmínky &middot; GDPR</span>
+  </div>
+</footer>
+
+</body>
+</html>
